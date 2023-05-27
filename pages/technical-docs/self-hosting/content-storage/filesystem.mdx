@@ -1,0 +1,14 @@
+#  Filesystem Storage 
+
+Images, Documents and Videos can be stored in your filesystem, it uses the `/content` folder on the project directory to store files. 
+
+<br/>
+
+<img style={{borderRadius:10}} quality={100} src="/img/pages/storage/fs.png" alt="Hello" width={800} height={1300} />
+
+## Containers 
+
+If you are using Kubernetes or Containerised environments you should make sure to use **Volumes (Docker)** or **Persistent Volumes (Kubernetes)**  for your `/content` folder 
+
+ - [Docker Volumes](https://docs.docker.com/storage/volumes/)
+ - [Kubernetes](https://kubernetes.io/docs/concepts/storage/persistent-volumes/) 

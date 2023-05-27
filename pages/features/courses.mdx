@@ -1,0 +1,35 @@
+import { Callout } from 'nextra-theme-docs'
+import { Card, Cards } from 'nextra-theme-docs'
+import Image from 'next/image'
+
+# Courses 
+
+Courses are a fundamental feature of LearnHouse, they should contain chapters and chapters contains activities. 
+
+<br/>
+<img style={{borderRadius:10}} quality={100} src="/img/pages/courses/courses.png" alt="Hello" width={800} height={1300} />
+
+There is a wide variety of Activities types to choose from, and we are constantly adding more.
+
+
+<Cards>
+<Card icon={<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
+</svg>
+  } title="Videos" href="/features/activities/videos">
+  </Card>
+  <Card icon={<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
+</svg>
+  } title="Dynamic Pages" href="/features/activities/dynamic-pages">
+  </Card>
+  <Card icon={<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+  <path strokeLinecap="round" strokeLinejoin="round" d="M21 7.5l-9-5.25L3 7.5m18 0l-9 5.25m9-5.25v9l-9 5.25M3 7.5l9 5.25M3 7.5v9l9 5.25m0-9v9" />
+</svg>
+  } title="Documents" href="/features/activities/documents">
+  </Card>
+</Cards>
+
+Courses can be part of a Collection, saving users time and effort by accessing all relevant courses in one place, instead of having to search for them individually. In addition, collections can serve as a tool for instructors and administrators to provide a more structured and coherent learning experience to their learners, by grouping courses in a logical and meaningful way. 
+
+When **Starting a new Course** progression data is stored in your Trail, including Quizzes data and Assignments (Coming soon)

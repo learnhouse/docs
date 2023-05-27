@@ -1,0 +1,34 @@
+import { Callout } from "nextra-theme-docs";
+import Image from "next/image";
+
+# Organization Hosting Modes
+
+<Callout type="warning">Multi Organization setup is still work in progress </Callout>
+
+LearnHouse supports Multi Organizations (Multi-Tenacy), which means you can have multiple organizations using the same platform and therefore the same instance of LearnHouse.
+
+Your Organizations will share the same database and have their content, files, users on the database marked by `organization_id` and every request will be scoped to that organization.
+
+<br />
+<img style={{ borderRadius: 10 }} quality={100} src="/img/schemas/orgs_hosting.png" alt="Hello" width={800} height={500} />
+
+## Single Organization setup
+
+<Callout type="info">Single Organization setup is the default when installing learnhouse for the first time.</Callout>
+
+When using a Single Organization Setup you should refer your Organization's `slug` in the **frontend config file**
+
+### Frontend Config
+
+```bash filename="front/.env" {1-2}
+NEXT_PUBLIC_LEARNHOUSE_SELF_HOSTED=true
+NEXT_PUBLIC_LEARNHOUSE_DEFAULT_ORG=myorg
+```
+
+## Multi Organization setup
+
+### Frontend Config
+
+```bash filename="front/.env" {1-2}
+NEXT_PUBLIC_LEARNHOUSE_SELF_HOSTED=false
+```
