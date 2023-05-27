@@ -21,8 +21,8 @@ When using a Single Organization Setup you should refer your Organization's `slu
 ### Frontend Config
 
 ```bash filename="front/.env" {1-2}
-NEXT_PUBLIC_LEARNHOUSE_SELF_HOSTED=true
-NEXT_PUBLIC_LEARNHOUSE_DEFAULT_ORG=myorg
+NEXT_PUBLIC_LEARNHOUSE_MULTI_ORG=false
+NEXT_PUBLIC_LEARNHOUSE_DEFAULT_ORG=defaultorg
 ```
 
 ## Multi Organization setup
@@ -30,5 +30,5 @@ NEXT_PUBLIC_LEARNHOUSE_DEFAULT_ORG=myorg
 ### Frontend Config
 
 ```bash filename="front/.env" {1-2}
-NEXT_PUBLIC_LEARNHOUSE_SELF_HOSTED=false
+NEXT_PUBLIC_LEARNHOUSE_MULTI_ORG=true
 ```
