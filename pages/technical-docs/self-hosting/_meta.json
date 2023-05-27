@@ -1,5 +1,6 @@
 {
   "overview": "Overview",
+  "configuration": "Configuration",
   "organization-hosting-modes": "Organization Hosting Modes",
   "docker-and-kube": "Docker and Kubernetes",
   "vercel": "Using Vercel",

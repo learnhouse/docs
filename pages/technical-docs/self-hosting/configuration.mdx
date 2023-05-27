@@ -1,0 +1,126 @@
+
+#  Configuration
+
+  
+
+For self hosted LearnHouse users, a custom configuration file can be used to suit your needs.
+
+  
+
+##  Backend config file
+
+Here is an example of the `config.yaml` file :
+
+  
+
+```json filename="config.yaml" copy
+site_name: LearnHouse
+site_description: LearnHouse is an open-source platform tailored for learning experiences.
+contact_email: hi@learnhouse.app
+
+hosting_config:
+  domain: learnhouse.app
+  ssl: true
+  allowed_origins:
+    - http://localhost:3000
+    - http://localhost:3001
+  cookies_config:
+    domain: ".localhost"
+  allowed_regexp: '\b((?:https?://)[^\s/$.?#].[^\s]*)\b'
+
+database_config:
+  mongodb_connection_string: mongodb://learnhouse:learnhouse@mongo:27017/
+```
+You can also use a `.env` file to configure your backend.
+
+If an environment variable is set, it will override the value in the `config.yaml` file, here is an example of the `.env` file :
+
+```env filename=".env" copy
+LEARNHOUSE_SITE_NAME=LearnHouse
+LEARNHOUSE_SITE_DESCRIPTION=LearnHouse is an open-source platform tailored for learning experiences.
+LEARNHOUSE_CONTACT_EMAIL=hi@learnhouse.app 
+LEARNHOUSE_DOMAIN=learnhouse.app
+LEARNHOUSE_SSL=true
+LEARNHOUSE_USE_DEFAULT_ORG=true
+LEARNHOUSE_ALLOWED_ORIGINS=http://localhost:3000,http://localhost:3001
+LEARNHOUSE_COOKIE_DOMAIN=.localhost
+LEARNHOUSE_ALLOWED_REGEXP=\b((?:https?://)[^\s/$.?#].[^\s]*)\b
+LEARNHOUSE_SELF_HOSTED=false
+LEARNHOUSE_MONGODB_CONNECTION_STRING=mongodb://learnhouse:learnhouse@mongo:27017/
+
+```
+  
+
+###  General Metadata
+
+  
+
+####  Site name
+
+Your site name
+
+####  Site description
+
+A short description
+
+####  Contact email
+
+You contact mail
+
+  
+  
+
+###  Hosting config
+
+####  Domain
+
+You site's technical domain
+
+####  SSL
+
+Is ssl used ?
+
+#### Allowed origins 
+
+A list of origins that should be permitted to make cross-origin requests to your website.
+
+#### Allowed origins regex 
+
+A regex string to match against origins that should be permitted to make cross-origin requests to your website.
+
+####  Cookies Domain 
+
+Your frontend domain, the domain will be assigned to cookies that the backend emits, authentication and parts of your site would not work if not configured properly. 
+
+The value used in the `yaml` should be in the "string" format.
+
+##### Sub domains 
+
+If you want to use the backend for different subdomains locations, for example : 
+
+ - domain.app
+ - acme1.domain.app
+ - acme2.domain.app
+
+You can add a `.` before your domain, here it would be `.domain.app`
+
+###  Database config
+
+####  Mongodb Database config 
+
+Your MongoDB Database connection string 
+
+##  Frontend config file
+
+You can also configure your frontend by creating a `.env` file in the `frontend` folder.
+
+Here is an example of the `.env` file :
+
+```env filename="front/.env" {1-2}
+NEXT_PUBLIC_LEARNHOUSE_MULTI_ORG=false
+NEXT_PUBLIC_LEARNHOUSE_DEFAULT_ORG=defaultorg
+```
+
+###  Multi Organizations
+
+Please check the [Multi Organization](./organization-hosting-modes) section for more information.
