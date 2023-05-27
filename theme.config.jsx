@@ -36,7 +36,7 @@ export default {
         site_name: "LearnHouse Docs",
         images: [
           {
-            url: "https://docs.learnhouse.app/og.png",
+            url: "https://docs.learnhouse.app/img/og.png",
             alt: "LearnHouse Docs",
 
           },
@@ -46,7 +46,7 @@ export default {
         handle: "@getlearnhouse",
         site: "@getlearnhouse",
         cardType: "summary_large_image",
-        
+
       },
 
 
