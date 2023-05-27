@@ -27,6 +27,29 @@ export default {
   useNextSeoProps() {
     return {
       titleTemplate: "%s – LearnHouse Docs",
+      canonical: "https://docs.learnhouse.app",
+      description: "The next-gen open source learning software",
+      openGraph: {
+        type: "website",
+        locale: "en_US",
+        url: "https://docs.learnhouse.app",
+        site_name: "LearnHouse Docs",
+        images: [
+          {
+            url: "https://docs.learnhouse.app/og.png",
+            alt: "LearnHouse Docs",
+
+          },
+        ],
+      },
+      twitter: {
+        handle: "@getlearnhouse",
+        site: "@getlearnhouse",
+        cardType: "summary_large_image",
+        
+      },
+
+
     };
   },
 };
