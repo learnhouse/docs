@@ -38,7 +38,8 @@ export default {
           {
             url: "https://docs.learnhouse.app/img/og.png",
             alt: "LearnHouse Docs",
-
+            width: 1512,
+            height: 687,
           },
         ],
       },
@@ -46,10 +47,7 @@ export default {
         handle: "@getlearnhouse",
         site: "@getlearnhouse",
         cardType: "summary_large_image",
-
       },
-
-
     };
   },
 };
