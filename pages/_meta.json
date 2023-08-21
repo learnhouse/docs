@@ -1,19 +1,16 @@
 {
+  "-- Overview": {
+    "type": "separator",
+    "title": "Overview"
+  },
   "index": "Introduction",
-  "-- General": {
-    "type": "separator",
-    "title": "General"
-  },
   "features": "Features",
-  "-- Technical": {
+  "-- Developers": {
     "type": "separator",
-    "title": "Technical"
+    "title": "Developers"
   },
-  "overview": "Overview",
-  "self-hosting": "Self Hosting",
-  "-- Contribute": {
-    "type": "separator",
-    "title": "Contribute"
-  },
-  "setup-dev-environment": "Set up a dev environment"
+  "setup-dev-environment": "Quick Start",
+  "concepts": "Concepts",
+  "self-hosting": "Self Hosting"
+
 }

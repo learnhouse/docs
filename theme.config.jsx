@@ -25,14 +25,14 @@ export default {
     text: <span>{new Date().getFullYear()} © LearnHouse.</span>,
   },
   sidebar: {
-    defaultMenuCollapseLevel: 1,
+    defaultMenuCollapseLevel: 2,
   },
   useNextSeoProps() {
     return {
       titleTemplate: "%s – LearnHouse Docs",
       canonical: "https://docs.learnhouse.app",
       description: "The next-gen open source learning software",
-      
+
       openGraph: {
         type: "website",
         locale: "en_US",

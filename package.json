@@ -11,10 +11,10 @@
   "dependencies": {
     "@react-aria/ssr": "^3.6.0",
     "@vercel/analytics": "^1.0.1",
-    "next": "^13.4.13",
+    "next": "^13.4.19",
     "next-sitemap": "^4.1.8",
-    "nextra": "^2.5.2",
-    "nextra-theme-docs": "^2.5.2",
+    "nextra": "^2.11.1",
+    "nextra-theme-docs": "^2.11.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
