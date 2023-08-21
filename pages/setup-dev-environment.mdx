@@ -1,0 +1,129 @@
+import { Callout } from "nextra-theme-docs";
+import { Steps } from "nextra-theme-docs";
+
+# Setting up a dev environment
+
+This is a guide to set up a dev environment for LearnHouse, it will guide you through the installation of the backend and the frontend.
+
+Some parts are subject to automation in the future, making the process easier.
+
+## Backend configuration
+
+<Steps>
+ 
+### Install Docker
+ 
+To install Docker, follow the instructions for your operating system on the [Docker website](https://docs.docker.com/get-docker/).
+
+### Get the repository
+
+```bash copy
+git clone https://github.com/learnhouse/learnhouse
+```
+
+```shell copy
+cd learnhouse
+```
+
+### Build & run the Backend
+
+This will build & run the backend and the database docker images
+
+```shell copy
+docker-compose up -d
+```
+### Enable install mode 
+
+You'll need to modify the config file to enable the install mode
+
+```env filename="./config/config.yaml" {6-7}
+site_name: LearnHouse
+site_description: LearnHouse is an open-source platform tailored for learning experiences.
+contact_email: hi@learnhouse.app
+
+general:
+  development_mode: true
+  install_mode: true
+```
+<Callout type="info" >
+  To learn more about Configuration options, please refer to the [Configuration](/self-hosting/configuration) documentation
+</Callout>
+
+</Steps>
+
+## Frontend configuration
+
+<Steps>
+ 
+### Init the frontend
+
+Go to the frontend folder
+
+```shell copy
+cd front
+```
+
+This will install all the dependencies needed for the frontend
+
+```shell copy
+npm i
+```
+Add an .env file in the front folder with the following content
+
+```env filename="front/.env" {1-2}
+NEXT_PUBLIC_LEARNHOUSE_MULTI_ORG=false
+NEXT_PUBLIC_LEARNHOUSE_DEFAULT_ORG=test
+NEXT_PUBLIC_LEARNHOUSE_API_URL=http://localhost:1338/api/v1/
+NEXT_PUBLIC_LEARNHOUSE_BACKEND_URL=http://localhost:1338/
+NEXT_PUBLIC_LEARNHOUSE_DOMAIN=localhost:3000
+```
+
+<Callout type="warning" >
+  Setting MultiOrg to true won't work locally for now,
+  please set it to false
+</Callout>
+
+<Callout type="info" >
+  To learn about Organizations Hosting modes, please refer to the [Organization Hosting Modes](/self-hosting/organization-hosting-modes) documentation
+</Callout>
+
+
+Run the dev environment
+
+```shell copy
+npm run dev
+```
+
+### Get to the install page
+
+Go to [http://localhost:3000/install](http://localhost:3000/install)
+
+<br/>
+<img style={{ borderRadius: 10 }} quality={100} src="/img/pages/dev-env/install.png" alt="Hello" width={800} height={500} />
+
+</Steps>
+
+## Install LearnHouse
+
+<Steps>
+
+### Go through the install process 
+
+Create your Organization, Account and roles.
+### Configure your Organization as the default one
+
+You'll need to update the front env file to set your Organization as the default one, use the **slug** of your organization.
+
+```env filename="front/.env" {2}
+NEXT_PUBLIC_LEARNHOUSE_MULTI_ORG=false
+NEXT_PUBLIC_LEARNHOUSE_DEFAULT_ORG=REPLACE_WITH_YOUR_ORG_SLUG
+NEXT_PUBLIC_LEARNHOUSE_API_URL=http://localhost:1338/api/v1/
+NEXT_PUBLIC_LEARNHOUSE_BACKEND_URL=http://localhost:1338/
+NEXT_PUBLIC_LEARNHOUSE_DOMAIN=localhost:3000
+```
+
+### Congratulations, you're done! 🎉
+
+Visit the app at [http://localhost:3000/](http://localhost:3000/)
+
+</Steps>

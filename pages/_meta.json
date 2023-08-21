@@ -1,5 +1,16 @@
 {
+  "-- Overview": {
+    "type": "separator",
+    "title": "Overview"
+  },
   "index": "Introduction",
   "features": "Features",
-  "technical-docs": "Technical Docs"
+  "-- Developers": {
+    "type": "separator",
+    "title": "Developers"
+  },
+  "setup-dev-environment": "Quick Start",
+  "concepts": "Concepts",
+  "self-hosting": "Self Hosting"
+
 }
