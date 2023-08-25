@@ -32,7 +32,8 @@ This will build & run the backend and the database docker images
 ```shell copy
 docker-compose up -d
 ```
-### Enable install mode 
+
+### Enable install mode
 
 You'll need to modify the config file to enable the install mode
 
@@ -45,10 +46,13 @@ general:
   development_mode: true
   install_mode: true
 ```
+
 <Callout type="info" >
   To learn more about Configuration options, please refer to the [Configuration](/self-hosting/configuration) documentation
 </Callout>
-
+<Callout type="warning" >
+  If using LearnHouse in production, please set the install mode and development mode to **false**
+</Callout>
 </Steps>
 
 ## Frontend configuration
@@ -68,6 +72,7 @@ This will install all the dependencies needed for the frontend
 ```shell copy
 npm i
 ```
+
 Add an .env file in the front folder with the following content
 
 ```env filename="front/.env" {1-2}
@@ -78,15 +83,11 @@ NEXT_PUBLIC_LEARNHOUSE_BACKEND_URL=http://localhost:1338/
 NEXT_PUBLIC_LEARNHOUSE_DOMAIN=localhost:3000
 ```
 
-<Callout type="warning" >
-  Setting MultiOrg to true won't work locally for now,
-  please set it to false
-</Callout>
+<Callout type="warning">Setting MultiOrg to true won't work locally for now, please set it to false</Callout>
 
-<Callout type="info" >
+<Callout type="info">
   To learn about Organizations Hosting modes, please refer to the [Organization Hosting Modes](/self-hosting/organization-hosting-modes) documentation
 </Callout>
-
 
 Run the dev environment
 
@@ -98,7 +99,7 @@ npm run dev
 
 Go to [http://localhost:3000/install](http://localhost:3000/install)
 
-<br/>
+<br />
 <img style={{ borderRadius: 10 }} quality={100} src="/img/pages/dev-env/install.png" alt="Hello" width={800} height={500} />
 
 </Steps>
@@ -107,9 +108,10 @@ Go to [http://localhost:3000/install](http://localhost:3000/install)
 
 <Steps>
 
-### Go through the install process 
+### Go through the install process
 
 Create your Organization, Account and roles.
+
 ### Configure your Organization as the default one
 
 You'll need to update the front env file to set your Organization as the default one, use the **slug** of your organization.
