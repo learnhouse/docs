@@ -64,7 +64,7 @@ general:
 Go to the frontend folder
 
 ```shell copy
-cd front
+cd apps/web
 ```
 
 This will install all the dependencies needed for the frontend
@@ -75,7 +75,7 @@ npm i
 
 Add an .env file in the front folder with the following content
 
-```env filename="front/.env" {1-2}
+```env filename="apps/web/.env" {1-2}
 NEXT_PUBLIC_LEARNHOUSE_MULTI_ORG=false
 NEXT_PUBLIC_LEARNHOUSE_DEFAULT_ORG=test
 NEXT_PUBLIC_LEARNHOUSE_API_URL=http://localhost:1338/api/v1/
@@ -116,7 +116,7 @@ Create your Organization, Account and roles.
 
 You'll need to update the front env file to set your Organization as the default one, use the **slug** of your organization.
 
-```env filename="front/.env" {2}
+```env filename="apps/web/.env" {2}
 NEXT_PUBLIC_LEARNHOUSE_MULTI_ORG=false
 NEXT_PUBLIC_LEARNHOUSE_DEFAULT_ORG=REPLACE_WITH_YOUR_ORG_SLUG
 NEXT_PUBLIC_LEARNHOUSE_API_URL=http://localhost:1338/api/v1/
