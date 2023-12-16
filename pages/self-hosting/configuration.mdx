@@ -1,18 +1,9 @@
+import { Callout } from 'nextra/components'
 
 #  Configuration
-
-  
-
 For self hosted LearnHouse users, a custom configuration file can be used to suit your needs.
-
-  
-
 ##  Backend config file
-
 Here is an example of the `config.yaml` file :
-
-  
-
 ```json filename="config.yaml" copy
 site_name: LearnHouse
 site_description: LearnHouse is an open-source platform tailored for learning experiences.
@@ -29,7 +20,7 @@ hosting_config:
   allowed_regexp: '\b((?:https?://)[^\s/$.?#].[^\s]*)\b'
 
 database_config:
-  mongodb_connection_string: mongodb://learnhouse:learnhouse@mongo:27017/
+  sql_connection_string: postgresql://learnhouse:learnhouse@postgresql:27017/
 ```
 You can also use a `.env` file to configure your backend.
 
@@ -46,14 +37,12 @@ LEARNHOUSE_ALLOWED_ORIGINS=http://localhost:3000,http://localhost:3001
 LEARNHOUSE_COOKIE_DOMAIN=.localhost
 LEARNHOUSE_ALLOWED_REGEXP=\b((?:https?://)[^\s/$.?#].[^\s]*)\b
 LEARNHOUSE_SELF_HOSTED=false
-LEARNHOUSE_MONGODB_CONNECTION_STRING=mongodb://learnhouse:learnhouse@mongo:27017/
+LEARNHOUSE_SQL_CONNECTION_STRING=postgresql://learnhouse:learnhouse@postgresql:27017/
 
 ```
   
 
 ###  General Metadata
-
-  
 
 ####  Site name
 
@@ -65,12 +54,9 @@ A short description
 
 ####  Contact email
 
-You contact mail
+Your designated contact email address.
 
-  
-  
-
-###  Hosting config
+###  Hosting Config
 
 ####  Domain
 
@@ -78,13 +64,13 @@ You site's technical domain
 
 ####  SSL
 
-Is ssl used ?
+Is SSL used?
 
-#### Allowed origins 
+#### Allowed Origins 
 
 A list of origins that should be permitted to make cross-origin requests to your website.
 
-#### Allowed origins regex 
+#### Allowed Origins Regex 
 
 A regex string to match against origins that should be permitted to make cross-origin requests to your website.
 
@@ -94,7 +80,7 @@ Your frontend domain, the domain will be assigned to cookies that the backend em
 
 The value used in the `yaml` should be in the "string" format.
 
-##### Sub domains 
+##### Sub Domains 
 
 If you want to use the backend for different subdomains locations, for example : 
 
@@ -104,11 +90,15 @@ If you want to use the backend for different subdomains locations, for example :
 
 You can add a `.` before your domain, here it would be `.domain.app`
 
-###  Database config
+###  Database Config
 
-####  Mongodb Database config 
+####  PostgreSQL Database config
 
-Your MongoDB Database connection string 
+<Callout type="info">
+  As of December 2023, we've transitioned our database structure to PostgreSQL.
+</Callout>
+
+Your PostgreSQL Database connection string 
 
 ##  Frontend config file
 
