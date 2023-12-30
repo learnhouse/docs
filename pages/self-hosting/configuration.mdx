@@ -20,7 +20,7 @@ hosting_config:
   allowed_regexp: '\b((?:https?://)[^\s/$.?#].[^\s]*)\b'
 
 database_config:
-  sql_connection_string: postgresql://learnhouse:learnhouse@postgresql:27017/
+  sql_connection_string: postgresql://learnhouse:learnhouse@postgresql:5432/
 ```
 You can also use a `.env` file to configure your backend.
 
@@ -37,7 +37,7 @@ LEARNHOUSE_ALLOWED_ORIGINS=http://localhost:3000,http://localhost:3001
 LEARNHOUSE_COOKIE_DOMAIN=.localhost
 LEARNHOUSE_ALLOWED_REGEXP=\b((?:https?://)[^\s/$.?#].[^\s]*)\b
 LEARNHOUSE_SELF_HOSTED=false
-LEARNHOUSE_SQL_CONNECTION_STRING=postgresql://learnhouse:learnhouse@postgresql:27017/
+LEARNHOUSE_SQL_CONNECTION_STRING=postgresql://learnhouse:learnhouse@postgresql:5432/learnhouse
 
 ```
   
