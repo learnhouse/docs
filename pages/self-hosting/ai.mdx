@@ -1,0 +1,87 @@
+import { Callout } from 'nextra/components'
+
+#  AI Self Hosting
+
+AI can be used in your self hosted instance of LearnHouse, it is powered by [OpenAI](https://openai.com) and you will need to create an account and get an API key to use it.
+
+To enable AI in your self hosted instance, you will need to follow the steps below.
+
+## Enabling AI 
+
+Either use environment variables or the config file to enable AI.
+
+### Environment Variables
+
+- `LEARNHOUSE_OPENAI_API_KEY` - Your OpenAI API key
+- `LEARNHOUSE_IS_AI_ENABLED` - Set to `true` to enable AI, `false` to disable it
+
+### Config file
+
+```json filename="config.yaml" copy {18-20}
+site_name: LearnHouse
+site_description: LearnHouse is an open-source platform tailored for learning experiences.
+contact_email: hi@learnhouse.app
+
+hosting_config:
+  domain: learnhouse.app
+  ssl: true
+  allowed_origins:
+    - http://localhost:3000
+    - http://localhost:3001
+  cookies_config:
+    domain: ".localhost"
+  allowed_regexp: '\b((?:https?://)[^\s/$.?#].[^\s]*)\b'
+
+database_config:
+  sql_connection_string: postgresql://learnhouse:learnhouse@postgresql:27017/
+
+ai_config:
+    openai_api_key: "your-openai-api-key"
+    is_ai_enabled: true
+```
+## Organizations 
+
+AI is enabled on a per-organization basis, you can enable or disable AI for each organization, choose what model and features to use and set the usage limit.
+
+<Callout type="info">
+  The Organization config model is subject to change in future versions of LearnHouse
+</Callout>
+
+### Organization Config table
+
+Every Organization comes with a dedicated row in the `organizationconfig` table, you can find the `config`  json column and set the AI configuration for that organization.
+
+```json filename="organizationconfig > your organization row > config column" copy {2-15}
+{
+  "AIConfig": {
+    "ai_model": "gpt-3.5-turbo",
+    "embeddings": "text-embedding-ada-002",
+    "enabled": true,
+    "features": {
+      "activity_ask": true,
+      "course_ask": false,
+      "editor": true,
+      "global_ai_ask": false
+    },
+    "limits": {
+      "limits_enabled": true,
+      "max_asks": 200
+    }
+  },
+  "GeneralConfig": {
+    "active": true,
+    "color": "#000000",
+    "limits": {
+      "limits_enabled": false,
+      "max_staff": 0,
+      "max_storage": 0,
+      "max_users": 0
+    },
+    "users": {
+      "signup_mechanism": "inviteOnly"
+    }
+  }
+}
+```
+
+
