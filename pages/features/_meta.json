@@ -1,8 +1,7 @@
 {
-  "courses": "Courses",
-  "activities": "Activities",
-  "collections": "Collections",
+  "content": "Content",
+  "editor": "Editor",
   "ai": "LearnHouse AI",
-  "users-management": "Users Management",
-  "trail": "Trail"
+  "user-management": "Users Management",
+  "trails": "Trails"
 }
