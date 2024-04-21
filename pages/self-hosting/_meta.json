@@ -1,8 +1,8 @@
 {
   "overview": "Overview",
+  "hosting-guide": "Self Hosting Guide",
   "configuration": "Configuration",
   "organization-hosting-modes": "Organization Hosting Modes",
-  "docker-and-kube": "Docker and Kubernetes",
   "ai": "AI",
   "content-storage": "Content Storage"
 }

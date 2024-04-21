@@ -5,12 +5,15 @@
   },
   "index": "Introduction",
   "features": "Features",
+  "-- Self Hosting": {
+    "type": "separator",
+    "title": "Self Hosting"
+  },
+  "self-hosting": "Get started",
   "-- Developers": {
     "type": "separator",
     "title": "Developers"
   },
-  "setup-dev-environment": "Quick Start",
-  "concepts": "Concepts",
-  "self-hosting": "Self Hosting"
-
+  "setup-dev-environment": "Dev Environment",
+  "concepts": "Concepts"
 }

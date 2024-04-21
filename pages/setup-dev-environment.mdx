@@ -1,19 +1,22 @@
 import { Callout } from "nextra-theme-docs";
 import { Steps } from "nextra-theme-docs";
 
-# Setting up a dev environment
+# Setting up a Dev environment
 
 This is a guide to set up a dev environment for LearnHouse, it will guide you through the installation of the backend and the frontend.
 
-Some parts are subject to automation in the future, making the process easier.
+## Prerequisites
+
+- [Docker](https://docs.docker.com/get-docker/)
+- [Node.js 21.x](https://nodejs.org/en/download/)
+- [pnpm](https://pnpm.io/installation)
+- [Python 3.12.x](https://www.python.org/downloads/)
+- [Poetry](https://python-poetry.org/docs/)
+- macOS, Linux or Windows
 
 ## Backend configuration
 
 <Steps>
- 
-### Install Docker
- 
-To install Docker, follow the instructions for your operating system on the [Docker website](https://docs.docker.com/get-docker/).
 
 ### Get the repository
 
@@ -25,7 +28,7 @@ git clone https://github.com/learnhouse/learnhouse
 cd learnhouse
 ```
 
-### Build & run the Backend
+### Build & install LearnHouse
 
 This will build & run the backend and the database docker images
 
@@ -33,26 +36,46 @@ This will build & run the backend and the database docker images
 docker-compose up -d
 ```
 
-### Enable install mode
+This will install all the dependencies needed for the backend
+
+- A **Postgres** database
+- A **Redis** server
+- A **Collaboration** nodejs server
+- _A built LearnHouse App\* (Frontend & Backend)_
+
+<Callout type='info'>
+You should **ignore** the Built LearnHouse App as it's not needed for the dev environment, in this case it will be useful only for installing learnhouse contents (Roles, Organization, Users in the database)
+
+</Callout>
+
+### Run the backend in dev mode
 
 You'll need to modify the config file to enable the install mode
 
-```env filename="./config/config.yaml" {6-7}
-site_name: LearnHouse
-site_description: LearnHouse is an open-source platform tailored for learning experiences.
-contact_email: hi@learnhouse.app
+#### Go to the backend folder
 
-general:
-  development_mode: true
-  install_mode: true
+```shell copy
+cd apps/api
 ```
 
-<Callout type="info" >
-  To learn more about Configuration options, please refer to the [Configuration](/self-hosting/configuration) documentation
-</Callout>
-<Callout type="warning" >
-  If using LearnHouse in production, please set the install mode and development mode to **false**
-</Callout>
+#### Install python dependencies
+
+```shell copy
+poetry install
+```
+
+#### Run the Backend in Dev mode
+
+```shell copy
+poetry run python app.py
+```
+
+<Callout type="info">To learn more about Configuration options, please refer to the [Configuration](/self-hosting/configuration) documentation</Callout>
+
+#### Check the API
+
+Go to [http://localhost:1338/docs/](http://localhost:1338/docs/)
+
 </Steps>
 
 ## Frontend configuration
@@ -95,37 +118,34 @@ Run the dev environment
 pnpm run dev
 ```
 
-### Get to the install page
-
-Go to [http://localhost:3000/install](http://localhost:3000/install)
-
-<br />
-<img style={{ borderRadius: 10 }} quality={100} src="/img/pages/dev-env/install.png" alt="Hello" width={800} height={500} />
-
-</Steps>
-
-## Install LearnHouse
-
-<Steps>
-
-### Go through the install process
-
-Create your Organization, Account and roles.
-
 ### Configure your Organization as the default one
 
-You'll need to update the front env file to set your Organization as the default one, use the **slug** of your organization.
+Copy this content to the .env file in the web folder
 
 ```env filename="apps/web/.env" {2}
 NEXT_PUBLIC_LEARNHOUSE_MULTI_ORG=false
-NEXT_PUBLIC_LEARNHOUSE_DEFAULT_ORG=REPLACE_WITH_YOUR_ORG_SLUG
+NEXT_PUBLIC_LEARNHOUSE_DEFAULT_ORG=default
 NEXT_PUBLIC_LEARNHOUSE_API_URL=http://localhost:1338/api/v1/
 NEXT_PUBLIC_LEARNHOUSE_BACKEND_URL=http://localhost:1338/
 NEXT_PUBLIC_LEARNHOUSE_DOMAIN=localhost:3000
+NEXT_PUBLIC_LEARNHOUSE_COLLABORATION_WS_URL=wss://localhost:1998
 ```
+
+Make sure to change the `NEXT_PUBLIC_LEARNHOUSE_DEFAULT_ORG` to the organization you want to set as the default one, you''l find the organization slug in the database in the `organizations` table
+
+Here it is set to `default` which is the default organization created by the backend when you ran the backend in the previous steps
 
 ### Congratulations, you're done! 🎉
 
 Visit the app at [http://localhost:3000/](http://localhost:3000/)
 
 </Steps>
+
+## Next Steps
+
+Thanks for contributing to LearnHouse 💟 
+
+You'll find here some issues/ features we need help with, feel free to contribute to any of them 
+
+- [Help Wanted Issues](https://github.com/learnhouse/learnhouse/labels/help%20wanted)
+
