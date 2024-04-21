@@ -4,27 +4,50 @@ import { Callout } from 'nextra/components'
 For self hosted LearnHouse users, a custom configuration file can be used to suit your needs.
 ##  Backend config file
 Here is an example of the `config.yaml` file :
-```json filename="config.yaml" copy
+
+```yaml filename="config.yaml" copy
 site_name: LearnHouse
 site_description: LearnHouse is an open-source platform tailored for learning experiences.
 contact_email: hi@learnhouse.app
 
+general:
+  development_mode: false
+  install_mode: false
+
+security:
+  auth_jwt_secret_key: secret
+
 hosting_config:
   domain: learnhouse.app
   ssl: true
+  port: 1338
   allowed_origins:
     - http://localhost:3000
     - http://localhost:3001
   cookies_config:
     domain: ".localhost"
   allowed_regexp: '\b((?:https?://)[^\s/$.?#].[^\s]*)\b'
+  content_delivery:
+    type: "filesystem" # "filesystem" or "s3api"
+    s3api:
+      bucket_name: ""
+      endpoint_url: ""
+
+mailing_config:
+  resend_api_key: ""
+  system_email_adress: ""
 
 database_config:
-  sql_connection_string: postgresql://learnhouse:learnhouse@postgresql:5432/learnhouse
+  sql_connection_string: postgresql://learnhouse:learnhouse@localhost:5432/learnhouse
+
+redis_config:
+  redis_connection_string: redis://localhost:6379/learnhouse
 ```
 You can also use a `.env` file to configure your backend.
 
-If an environment variable is set, it will override the value in the `config.yaml` file, here is an example of the `.env` file :
+<Callout> 
+If an environment variable is set, it will override the value in the `config.yaml` file
+</Callout>
 
 ```env filename=".env" copy
 LEARNHOUSE_SITE_NAME=LearnHouse
@@ -38,7 +61,6 @@ LEARNHOUSE_COOKIE_DOMAIN=.localhost
 LEARNHOUSE_ALLOWED_REGEXP=\b((?:https?://)[^\s/$.?#].[^\s]*)\b
 LEARNHOUSE_SELF_HOSTED=false
 LEARNHOUSE_SQL_CONNECTION_STRING=postgresql://learnhouse:learnhouse@postgresql:5432/learnhouse
-
 ```
   
 
@@ -92,13 +114,29 @@ You can add a `.` before your domain, here it would be `.domain.app`
 
 ###  Database Config
 
-####  PostgreSQL Database config
+####  PostgreSQL Connection string 
 
 <Callout type="info">
   As of December 2023, we've transitioned our database structure to PostgreSQL.
 </Callout>
 
 Your PostgreSQL Database connection string 
+
+###  Redis Config
+
+####  Redis connection string
+
+Your Redis Database connection string
+
+###  Mailing Config
+
+####  Resend API Key
+
+Your Resend API Key
+
+####  System Email Address
+
+Your System Email Address
 
 ##  Frontend config file
 

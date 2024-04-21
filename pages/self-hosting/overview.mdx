@@ -2,17 +2,30 @@
 
 LearnHouse is open source software and can be installed and maintained on just about any Cloud provider. We also support different hosting schemas like using AWS S3 or CloudFlare R2 for content storage.
 
+## LearnHouse Cloud vs Self Hosting
+
+A common question we get from developers is whether they should use our official platform, or host the codebase on their own server independently. Deciding which option is best for you comes with some nuance, so below is a breakdown of the differences to help you decide what will fit your needs best.
+
+|                               | LearnHouse Cloud                                 | Self Hosting                  |
+| ----------------------------- | ------------------------------------------------ | ----------------------------- |
+| 🌍 Worldwide CDN              | Included                                         | Manual + Additional cost      |
+| 🔄 Weekly updates             | ✅                                               | Manual                        |
+| 🚧 Maintenance & Updates      | ✅                                               | Manual                        |
+| 🛡️ Security                   | ✅                                               | Manual                        |
+| ⚠️ Threat & uptime management | ✅                                               | ❌                            |
+| 🔒 SSL Certificate            | ✅                                               | Manual                        |
+| 📦 Continuous Backups         | ✅                                               | Manual + Additional cost      |
+| ⚡ Scalability                | ✅                                               | Depends on the cloud provider |
+| 👨‍💻 Direct SSH & DB access     | ❌                                               | ✅                            |
+| 🚑 Product Support            | Email                                            | Community                     |
+| 💟 Where your money goes      | Supporting the team + New Features in LearnHouse | 3rd party companies           |
+
 ## Prerequisites
 
-- Node.js 18.x
-- Python 3.11
-- Pnpm 
-- Docker
-- Docker Compose
+- [Docker](https://docs.docker.com/get-docker/)
+- A server with at least 2GB of RAM
 
-## Steps 
+## Guides
 
-- [Get started & Install LearnHouse](/setup-dev-environment) 
+- [Self hosting Guide](/self-hosting/hosting-guide)
 - [Configure LearnHouse](/self-hosting/configuration)
-
-

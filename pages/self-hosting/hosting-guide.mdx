@@ -1,0 +1,107 @@
+import { Callout } from 'nextra-theme-docs'
+import { Steps } from 'nextra-theme-docs'
+
+# Self hosting guide 
+
+We use Docker & Docker compose to run LearnHouse, this makes it easy to run the application on any machine that has Docker installed.
+
+Tested on : 
+- macOS Sonoma 
+- Ubuntu 23.04 Lunar lobster 
+- (Need testers on Windows)
+
+## Prerequisites
+
+- [Docker](https://docs.docker.com/get-docker/)
+
+## Step by step
+
+<Steps>
+ 
+### Install Docker
+ 
+To install Docker, follow the instructions for your operating system on the [Docker website](https://docs.docker.com/get-docker/).
+
+### Download the LearnHouse repository
+
+```bash copy
+git clone https://github.com/learnhouse/learnhouse 
+```
+ 
+#### Go to the directory 
+
+```shell copy 
+cd learnhouse
+```
+
+### Build and run LearnHouse
+
+```shell copy
+docker-compose up -d
+```
+
+### Access LearnHouse
+
+When running the application for the first time, an admin account and organization is created for you, look for the admin credentials in the logs.
+
+#### Login to your account 
+
+Open your browser and go to [http://localhost/login](http://localhost/login) to access the application.
+
+#### Change your password
+
+After logging in, don't forget to [change your password](http://localhost/dash/user-account/settings/security) 
+
+<Callout type="warning" >
+  It is important to change the default password to a another one, reducing the risk of unauthorized access if your server is compromised.
+</Callout>
+
+### You're all set!
+
+Thanks for using LearnHouse 🎉 
+
+</Steps>
+## Further configuration
+
+You should be ready to go when following the steps above but if you'd live to enable features like **AI**, **Emails**, **Multi-org**, or customize the application, check the [configuration guide](/self-hosting/configuration).
+
+### Environment variables usage with the LearnHouse Docker image
+
+You can mix frontend and backend env vars defined in the COnfiguration page, in a single file like the one included on the repository (extra/example-learnhouse-conf.env)
+
+```env filename="extra/example-learnhouse-conf.env" copy
+# Frontend
+NEXT_PUBLIC_LEARNHOUSE_MULTI_ORG=false
+NEXT_PUBLIC_LEARNHOUSE_DEFAULT_ORG=default
+# Backend
+LEARNHOUSE_COOKIE_DOMAIN=.localhost
+LEARNHOUSE_SQL_CONNECTION_STRING=postgresql://learnhouse:learnhouse@db:5432/learnhouse
+LEARNHOUSE_REDIS_CONNECTION_STRING=redis://redis:6379/learnhouse
+```
+
+```yaml filename="docker-compose.yml" {7-8} copy
+app:
+    build: .
+    ports:
+      - "80:80"
+    volumes:
+      - .:/usr/learnhouse
+    env_file:
+      - ./extra/example-learnhouse-conf.env
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+```
+
+
+## Found bugs ? 
+
+If you find any bugs or have any suggestions, please open an issue on our [GitHub repository](https://github.com/learnhouse/learnhouse/issues/new/choose), we would love to hear from you.
+
+Please include as much information as possible, like the steps to reproduce the bug, the expected behavior and the actual behavior.
+
+
+
+
