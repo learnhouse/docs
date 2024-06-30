@@ -3,12 +3,16 @@ import { Steps } from 'nextra-theme-docs'
 
 # Self hosting guide 
 
-We use Docker & Docker compose to run LearnHouse, this makes it easy to run the application on any machine that has Docker installed.
+We use Docker & Docker Compose to run LearnHouse, this makes it easy to run the application on any machine that has Docker installed.
 
-Tested on : 
+Tested on: 
 - macOS Sonoma 
 - Ubuntu 23.04 Lunar lobster 
 - (Need testers on Windows)
+
+<Callout type="info" emoji="🛠">
+Interested in helping test on Windows? Join our [Discord](https://discord.com/invite/CMyZjjYZ6x) community.
+</Callout>
 
 ## Prerequisites
 
@@ -32,6 +36,24 @@ git clone https://github.com/learnhouse/learnhouse
 
 ```shell copy 
 cd learnhouse
+```
+
+### Configure NextAuth
+
+Add these lines to your `.env` file. A template is available under `/extra/example-learnhouse-conf.env`.
+
+<Callout type="info">
+To safely encrypt tokens and email hashes, you need a NextAuth secret.
+
+To create one, either run `npx auth secret`, or on UNIX based systems (MacOS/Linux) you can use `openssl rand -base64 33`.
+
+Copy this string into your .env file as NEXTAUTH_SECRET=
+</Callout>
+
+```env filename=".env"
+# NextAuth Configuration
+NEXTAUTH_SECRET={generated_secret}
+NEXTAUTH_URL=http://localhost:3000/
 ```
 
 ### Build and run LearnHouse
