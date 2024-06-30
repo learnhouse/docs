@@ -38,6 +38,24 @@ git clone https://github.com/learnhouse/learnhouse
 cd learnhouse
 ```
 
+### Configure NextAuth
+
+Add these lines to your `.env` file. A template is available under `/extra/example-learnhouse-conf.env`.
+
+<Callout type="info">
+To safely encrypt tokens and email hashes, you need a NextAuth secret.
+
+To create one, either run `npx auth secret`, or on UNIX based systems (MacOS/Linux) you can use `openssl rand -base64 33`.
+
+Copy this string into your .env file as NEXTAUTH_SECRET={your secret}
+</Callout>
+
+```env filename=".env"
+# NextAuth Configuration
+NEXTAUTH_SECRET={generated_secret}
+NEXTAUTH_URL=http://localhost:3000/
+```
+
 ### Build and run LearnHouse
 
 ```shell copy
