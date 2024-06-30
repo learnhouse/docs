@@ -142,12 +142,27 @@ Your System Email Address
 
 You can also configure your frontend by creating a `.env` file in the `apps/web` folder.
 
+Following the integration of OAuth using NextAuth to manage sign-ups/ins. For this to work, you now need to add two lines to your `.env` config file.
+
+<Callout type="info">
+To safely encrypt tokens and email hashes, you need a NextAuth secret.
+
+To create one, either run `npx auth secret`, or on UNIX based systems (MacOS/Linux) you can use `openssl rand -base64 33`.
+
+Copy this string into your .env file as NEXTAUTH_SECRET={your secret}
+
 Here is an example of the `.env` file :
 
 ```env filename="apps/web/.env" {1-2}
+# Learnhouse configuration
 NEXT_PUBLIC_LEARNHOUSE_MULTI_ORG=false
 NEXT_PUBLIC_LEARNHOUSE_DEFAULT_ORG=defaultorg
+# NextAuth Configuration
+NEXTAUTH_SECRET={generated_secret}
+NEXTAUTH_URL=http://localhost:3000/
 ```
+
+To learn more about Custom Authentication, visit the NextAuth docs [here](https://authjs.dev/getting-started/authentication).
 
 ###  Multi Organizations
 
