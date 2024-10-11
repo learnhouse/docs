@@ -30,6 +30,11 @@ cd learnhouse
 
 ### Build & install LearnHouse
 
+<Callout type="warning">
+  Make sure your container runtime has at least 4GB of RAM allocated, as default
+  settings may vary by tool.
+</Callout>
+
 This will build & run the backend and the database docker images
 
 ```shell copy
@@ -70,7 +75,10 @@ poetry install
 poetry run python app.py
 ```
 
-<Callout type="info">To learn more about Configuration options, please refer to the [Configuration](/self-hosting/configuration) documentation</Callout>
+<Callout type="info">
+  To learn more about Configuration options, please refer to the
+  [Configuration](/self-hosting/configuration) documentation
+</Callout>
 
 #### Check the API
 
@@ -104,12 +112,16 @@ NEXT_PUBLIC_LEARNHOUSE_DEFAULT_ORG=test
 NEXT_PUBLIC_LEARNHOUSE_API_URL=http://localhost:1338/api/v1/
 NEXT_PUBLIC_LEARNHOUSE_BACKEND_URL=http://localhost:1338/
 NEXT_PUBLIC_LEARNHOUSE_DOMAIN=localhost:3000
+NEXT_PUBLIC_LEARNHOUSE_TOP_DOMAIN=localhost
 ```
 
-<Callout type="warning">Setting MultiOrg to true won't work locally for now, please set it to false</Callout>
+<Callout type="warning">
+  Setting MultiOrg to true won't work locally for now, please set it to false
+</Callout>
 
 <Callout type="info">
-  To learn about Organizations Hosting modes, please refer to the [Organization Hosting Modes](/self-hosting/organization-hosting-modes) documentation
+  To learn about Organizations Hosting modes, please refer to the [Organization
+  Hosting Modes](/self-hosting/organization-hosting-modes) documentation
 </Callout>
 
 Run the dev environment
@@ -128,10 +140,11 @@ NEXT_PUBLIC_LEARNHOUSE_DEFAULT_ORG=default
 NEXT_PUBLIC_LEARNHOUSE_API_URL=http://localhost:1338/api/v1/
 NEXT_PUBLIC_LEARNHOUSE_BACKEND_URL=http://localhost:1338/
 NEXT_PUBLIC_LEARNHOUSE_DOMAIN=localhost:3000
+NEXT_PUBLIC_LEARNHOUSE_TOP_DOMAIN=localhost
 NEXT_PUBLIC_LEARNHOUSE_COLLABORATION_WS_URL=wss://localhost:1998
 ```
 
-Make sure to change the `NEXT_PUBLIC_LEARNHOUSE_DEFAULT_ORG` to the organization you want to set as the default one, you''l find the organization slug in the database in the `organizations` table
+Make sure to change the `NEXT_PUBLIC_LEARNHOUSE_DEFAULT_ORG` to the organization you want to set as the default one, you'll find the organization slug in the database in the `organizations` table
 
 Here it is set to `default` which is the default organization created by the backend when you ran the backend in the previous steps
 
@@ -143,9 +156,8 @@ Visit the app at [http://localhost:3000/](http://localhost:3000/)
 
 ## Next Steps
 
-Thanks for contributing to LearnHouse 💟 
+Thanks for contributing to LearnHouse 💟
 
-You'll find here some issues/ features we need help with, feel free to contribute to any of them 
+You'll find here some issues/ features we need help with, feel free to contribute to any of them
 
 - [Help Wanted Issues](https://github.com/learnhouse/learnhouse/labels/help%20wanted)
-
