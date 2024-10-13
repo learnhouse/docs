@@ -32,7 +32,7 @@ cd learnhouse
 
 <Callout type="warning">
   Make sure your container runtime has at least 4GB of RAM allocated, as default
-  settings may vary by tool.
+  settings may vary by tool
 </Callout>
 
 This will build & run the backend and the database docker images
@@ -104,24 +104,27 @@ This will install all the dependencies needed for the frontend, and for this you
 pnpm i
 ```
 
-Add an .env file in the front folder with the following content
+Add an .env file in the frontend folder with the following content
 
-```env filename="apps/web/.env" {1-2}
+<Callout type="warning">
+  Setting MultiOrg to true won't work locally for now, please keep it false
+</Callout>
+
+```env filename="apps/web/.env" {1-2} copy
 NEXT_PUBLIC_LEARNHOUSE_MULTI_ORG=false
-NEXT_PUBLIC_LEARNHOUSE_DEFAULT_ORG=test
+NEXT_PUBLIC_LEARNHOUSE_DEFAULT_ORG=defaultorg
 NEXT_PUBLIC_LEARNHOUSE_API_URL=http://localhost:1338/api/v1/
 NEXT_PUBLIC_LEARNHOUSE_BACKEND_URL=http://localhost:1338/
 NEXT_PUBLIC_LEARNHOUSE_DOMAIN=localhost:3000
 NEXT_PUBLIC_LEARNHOUSE_TOP_DOMAIN=localhost
+NEXT_PUBLIC_LEARNHOUSE_COLLABORATION_WS_URL=wss://localhost:1998
+NEXTAUTH_SECRET="my-very-secret-key" 
+NEXTAUTH_URL=http://localhost:3000/
 ```
 
-<Callout type="warning">
-  Setting MultiOrg to true won't work locally for now, please set it to false
-</Callout>
-
 <Callout type="info">
-  To learn about Organizations Hosting modes, please refer to the [Organization
-  Hosting Modes](/self-hosting/organization-hosting-modes) documentation
+  For details on organization hosting, see [Organization
+  Hosting Modes](/self-hosting/organization-hosting-modes)
 </Callout>
 
 Run the dev environment
@@ -129,24 +132,6 @@ Run the dev environment
 ```shell copy
 pnpm run dev
 ```
-
-### Configure your Organization as the default one
-
-Copy this content to the .env file in the web folder
-
-```env filename="apps/web/.env" {2}
-NEXT_PUBLIC_LEARNHOUSE_MULTI_ORG=false
-NEXT_PUBLIC_LEARNHOUSE_DEFAULT_ORG=default
-NEXT_PUBLIC_LEARNHOUSE_API_URL=http://localhost:1338/api/v1/
-NEXT_PUBLIC_LEARNHOUSE_BACKEND_URL=http://localhost:1338/
-NEXT_PUBLIC_LEARNHOUSE_DOMAIN=localhost:3000
-NEXT_PUBLIC_LEARNHOUSE_TOP_DOMAIN=localhost
-NEXT_PUBLIC_LEARNHOUSE_COLLABORATION_WS_URL=wss://localhost:1998
-```
-
-Make sure to change the `NEXT_PUBLIC_LEARNHOUSE_DEFAULT_ORG` to the organization you want to set as the default one, you'll find the organization slug in the database in the `organizations` table
-
-Here it is set to `default` which is the default organization created by the backend when you ran the backend in the previous steps
 
 ### Congratulations, you're done! 🎉
 
