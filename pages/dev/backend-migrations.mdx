@@ -1,0 +1,75 @@
+import { Callout } from "nextra-theme-docs";
+import { Steps } from "nextra-theme-docs";
+
+# Backend Migrations
+
+This is a guide to use migrations for LearnHouse, it will walk you through the process of using migrations in the backend.
+
+## Prerequisites
+
+- [Docker](https://docs.docker.com/get-docker/)
+- [Python 3.12.x](https://www.python.org/downloads/)
+- [Poetry](https://python-poetry.org/docs/)
+- [Alembic](https://alembic.sqlalchemy.org/en/latest/)
+- macOS, Linux or Windows
+
+<Callout type="info">
+  For details on setting up the backend dev environment, see [Setting Up Your Dev Environment](/dev/setup-dev-environment)
+</Callout>
+
+## General Concepts
+
+Generally, we use Alembic for SQL migrations.
+Make sure to check out their [tutorial](https://alembic.sqlalchemy.org/en/latest/tutorial.html) if you have never used it before.
+
+## Adding Migrations
+
+<Steps>
+
+### Navigate to your backend directory at `apps/api`
+
+Then use the following command to indicate that the database is already using the newest state.
+
+<Callout type="warning">
+  Make sure that the production app (in the container stack) was running at least once.
+  This way, you can guarantee that the DB is up-to-date.
+</Callout>
+
+```bash
+poetry run alembic stamp head
+```
+
+### Perform Changes In The DB
+
+Perform any change on the schema of the database, you could add a table for the "Example" feature, for instance.
+To generate a revision with the changes you did on your DB.
+
+```bash
+poetry run alembic revision --autogenerate -m "Example"
+```
+
+### Check Migrations History
+
+Check your migrations history
+
+```bash
+poetry run alembic history
+```
+
+### Perform all the Migrations
+
+Do all the migrations
+
+```bash
+poetry run alembic upgrade head
+```
+
+In order to check the migrations, visit a local directory that maps to [this path](https://github.com/learnhouse/learnhouse/tree/dev/apps/api/migrations).
+
+</Steps>
+
+
+<Callout type="info">
+  For downgrading the latest migration, you can use `alembic downgrade -2`.
+  Make sure to consult the Alembic docs for further information.
+</Callout>
