@@ -14,6 +14,6 @@
     "type": "separator",
     "title": "Developers"
   },
-  "setup-dev-environment": "Dev Environment",
+  "dev": "Dev Environment",
   "concepts": "Concepts"
 }
