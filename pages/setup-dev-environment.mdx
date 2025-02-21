@@ -11,7 +11,7 @@ This is a guide to set up a dev environment for LearnHouse, it will guide you th
 - [Node.js 21.x](https://nodejs.org/en/download/)
 - [pnpm](https://pnpm.io/installation)
 - [Python 3.12.x](https://www.python.org/downloads/)
-- [Poetry](https://python-poetry.org/docs/)
+- [uv](https://github.com/astral-sh/uv)
 - macOS, Linux or Windows
 
 ## Backend configuration
@@ -66,13 +66,13 @@ cd apps/api
 #### Install python dependencies
 
 ```shell copy
-poetry install
+uv sync
 ```
 
 #### Run the Backend in Dev mode
 
 ```shell copy
-poetry run python app.py
+uv run app.py
 ```
 
 <Callout type="info">
