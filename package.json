@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@react-aria/ssr": "^3.9.7",
+    "@react-aria/ssr": "^3.9.8",
     "@vercel/analytics": "^1.5.0",
     "next": "^15.2.0",
     "next-sitemap": "^4.2.3",
