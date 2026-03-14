@@ -10,12 +10,14 @@ SSO requires an Enterprise plan.
 
 ## Supported Providers
 
-- **WorkOS** — Full implementation with admin portal support.
-- **Okta** — OIDC-based authentication.
-- **Auth0** — OIDC-based authentication.
-- **Keycloak** — Self-hosted identity provider support.
-- **Custom SAML** — Connect any SAML-compatible identity provider.
-- **Custom OIDC** — Connect any OIDC-compatible identity provider.
+| Provider | Status | Description |
+|---|---|---|
+| [WorkOS](/enterprise/sso/workos) | Available | Enterprise SSO with SAML and OIDC support, includes admin portal |
+| [Custom OIDC](/enterprise/sso/custom-oidc) | Available | Connect any OpenID Connect provider (Azure AD, Okta, Google Workspace, Keycloak, etc.) |
+
+<Callout type="info">
+The Custom OIDC provider lets you connect to virtually any modern identity provider that supports OpenID Connect, including Okta, Azure AD / Microsoft Entra ID, Google Workspace, and Keycloak.
+</Callout>
 
 ## How SSO Works
 
@@ -26,7 +28,7 @@ SSO requires an Enterprise plan.
 
 ## User Provisioning
 
-When a user logs in via SSO for the first time, LearnHouse can automatically create their account using profile data from the identity provider:
+When a user logs in via SSO for the first time, LearnHouse automatically creates their account using profile data from the identity provider:
 
 - **First name, last name, and email** are mapped from the IdP.
 - **Avatar** is imported if available.
@@ -38,8 +40,8 @@ Existing users whose email matches are linked automatically — no duplicate acc
 
 | Option | Description |
 |---|---|
-| Provider | Which identity provider to use. |
+| Provider | Which identity provider to use (WorkOS or Custom OIDC). |
 | Email domain | Restrict SSO to specific email domains. |
 | Auto-provisioning | Automatically create accounts for new SSO users. |
 | Default role | Role assigned to newly provisioned users. |
-| Admin portal | Some providers (like WorkOS) offer an admin portal for managing the connection directly. |
+| Admin portal | WorkOS offers an admin portal for managing the IdP connection directly. |

@@ -8,6 +8,10 @@
 # Untitled
 URL: https://docs.learnhouse.app
 
+---
+title: Home
+---
+
 ## Platform Features
 
 ## Tech Stack
@@ -1427,12 +1431,12 @@ SSO requires an Enterprise plan.
 
 ## Supported Providers
 
-- **WorkOS** — Full implementation with admin portal support.
-- **Okta** — OIDC-based authentication.
-- **Auth0** — OIDC-based authentication.
-- **Keycloak** — Self-hosted identity provider support.
-- **Custom SAML** — Connect any SAML-compatible identity provider.
-- **Custom OIDC** — Connect any OIDC-compatible identity provider.
+| Provider | Status | Description |
+|---|---|---|
+| [WorkOS](/enterprise/sso/workos) | Available | Enterprise SSO with SAML and OIDC support, includes admin portal |
+| [Custom OIDC](/enterprise/sso/custom-oidc) | Available | Connect any OpenID Connect provider (Azure AD, Okta, Google Workspace, Keycloak, etc.) |
+
+The Custom OIDC provider lets you connect to virtually any modern identity provider that supports OpenID Connect, including Okta, Azure AD / Microsoft Entra ID, Google Workspace, and Keycloak.
 
 ## How SSO Works
 
@@ -1443,7 +1447,7 @@ SSO requires an Enterprise plan.
 
 ## User Provisioning
 
-When a user logs in via SSO for the first time, LearnHouse can automatically create their account using profile data from the identity provider:
+When a user logs in via SSO for the first time, LearnHouse automatically creates their account using profile data from the identity provider:
 
 - **First name, last name, and email** are mapped from the IdP.
 - **Avatar** is imported if available.
@@ -1455,11 +1459,100 @@ Existing users whose email matches are linked automatically — no duplicate acc
 
 | Option | Description |
 |---|---|
-| Provider | Which identity provider to use. |
+| Provider | Which identity provider to use (WorkOS or Custom OIDC). |
 | Email domain | Restrict SSO to specific email domains. |
 | Auto-provisioning | Automatically create accounts for new SSO users. |
 | Default role | Role assigned to newly provisioned users. |
-| Admin portal | Some providers (like WorkOS) offer an admin portal for managing the connection directly. |
+| Admin portal | WorkOS offers an admin portal for managing the IdP connection directly. |
+
+---
+
+# Custom OIDC
+URL: https://docs.learnhouse.app/enterprise/sso/custom-oidc
+
+The Custom OIDC provider lets you connect LearnHouse directly to any OpenID Connect 1.0 compatible identity provider. This is ideal for organizations that want to use their existing IdP without going through a third-party broker.
+
+## Compatible Providers
+
+Any OIDC-compliant provider works, including:
+
+- **Azure AD / Microsoft Entra ID**
+- **Okta**
+- **Google Workspace**
+- **Keycloak**
+- **Auth0**
+- **OneLogin**
+- **Ping Identity**
+
+## Configuration
+
+| Field | Required | Description |
+|---|---|---|
+| `issuer_url` | Yes | The OIDC Issuer URL. LearnHouse uses this to auto-discover endpoints via `/.well-known/openid-configuration`. |
+| `client_id` | Yes | OAuth 2.0 Client ID from your identity provider. |
+| `client_secret` | Yes | OAuth 2.0 Client Secret from your identity provider. |
+| `scopes` | No | Space-separated OAuth scopes. Defaults to `openid email profile`. |
+
+## Issuer URL Examples
+
+| Provider | Issuer URL Format |
+|---|---|
+| Azure AD | `https://login.microsoftonline.com/{tenant-id}/v2.0` |
+| Okta | `https://{your-domain}.okta.com` |
+| Google Workspace | `https://accounts.google.com` |
+| Keycloak | `https://{host}/realms/{realm}` |
+| Auth0 | `https://{your-domain}.auth0.com` |
+
+## Setup Steps
+
+1. Register LearnHouse as an application in your identity provider and obtain a Client ID and Client Secret.
+2. Set the callback/redirect URI in your IdP to your LearnHouse SSO callback URL.
+3. In the organization settings, select **Custom OIDC** as the SSO provider.
+4. Enter the Issuer URL, Client ID, and Client Secret.
+5. Users with matching email domains can now log in via SSO.
+
+LearnHouse uses OIDC Discovery to automatically find the authorization, token, and userinfo endpoints from the issuer URL. Make sure your IdP exposes a `/.well-known/openid-configuration` document.
+
+---
+
+# WorkOS
+URL: https://docs.learnhouse.app/enterprise/sso/workos
+
+WorkOS provides enterprise SSO through a unified API that supports both SAML and OIDC identity providers. It includes an admin portal that lets organization admins configure their identity provider without developer involvement.
+
+Requires `WORKOS_API_KEY` and `WORKOS_CLIENT_ID` environment variables to be set.
+
+## Features
+
+- **Admin Portal** — WorkOS provides a hosted portal where organization admins can set up and manage their IdP connection directly.
+- **SAML & OIDC** — Supports both protocols through a single integration.
+- **Auto User Provisioning** — Automatically creates LearnHouse accounts from IdP profiles.
+- **Domain Restrictions** — Restrict access to specific email domains.
+- **Default Role Assignment** — Assign a default role to newly provisioned users.
+
+## Configuration
+
+| Field | Required | Description |
+|---|---|---|
+| `organization_id` | Yes (or `connection_id`) | WorkOS Organization ID, created automatically or via the Admin Portal. |
+| `connection_id` | Yes (or `organization_id`) | WorkOS Connection ID, typically managed via the Admin Portal. |
+
+You need either an `organization_id` (for organization-level SSO) or a `connection_id` (for a specific connection). In most cases, you'll use the `organization_id` and let admins configure the connection through the Admin Portal.
+
+## Environment Variables
+
+| Variable | Description |
+|---|---|
+| `WORKOS_API_KEY` | Your WorkOS API key. |
+| `WORKOS_CLIENT_ID` | Your WorkOS Client ID. |
+
+## Setup Steps
+
+1. Create a [WorkOS account](https://workos.com) and obtain your API key and Client ID.
+2. Set the `WORKOS_API_KEY` and `WORKOS_CLIENT_ID` environment variables in your LearnHouse deployment.
+3. In the organization settings, select **WorkOS** as the SSO provider.
+4. Use the Admin Portal link to configure the identity provider connection (SAML or OIDC).
+5. Users with matching email domains can now log in via SSO.
 
 ---
 

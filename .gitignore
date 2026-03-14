@@ -15,7 +15,10 @@
 # next-sitemap
 /public/robots.txt
 /public/sitemap.xml
-/public/sitemap-0.xml  
+/public/sitemap-0.xml
+
+# pagefind (generated at build time)
+/public/_pagefind
 
 # production
 /build
