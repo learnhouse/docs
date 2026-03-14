@@ -45,7 +45,7 @@ function Navbar() {
               )}
             </Link>
 
-            <span className="lh-navbar-badge -ml-4 mt-[1px] text-[10px] font-bold tracking-wider rounded-[5px] px-1.5 py-[2.5px]" style={{ fontFamily: "'Wix Madefor Display', sans-serif" }}>Docs</span>
+            <span className="lh-navbar-badge">docs</span>
 
             <nav className="lh-navbar-nav lh-hide-mobile">
               <Link

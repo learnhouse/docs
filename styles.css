@@ -161,14 +161,24 @@ body > *:not(.lh-navbar) {
 .lh-navbar-logo img { height: 20px; width: auto; }
 
 .lh-navbar-badge {
-  color: var(--lh-fg-faint);
-  border: 1px solid var(--lh-border-subtle);
-  background: var(--lh-bg);
-  box-shadow: var(--lh-nice-shadow), inset 0 0.5px 0 rgba(255, 255, 255, 0.8);
-}
-
-html[class~='dark'] .lh-navbar-badge {
-  box-shadow: 0 0.5px 1px rgba(0, 0, 0, 0.2), inset 0 0.5px 0 rgba(255, 255, 255, 0.03);
+  margin-left: -14px;
+  margin-top: 1px;
+  font-family: 'Wix Madefor Display', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: #888;
+  background: linear-gradient(180deg, #ffffff 0%, #f8f8f8 100%);
+  border: 1px solid #e8e8e8;
+  border-bottom-color: #e0e0e0;
+  border-radius: 5px;
+  padding: 2px 7px;
+  line-height: 1.5;
+  box-shadow:
+    0 0.5px 1px rgba(0, 0, 0, 0.04),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  text-shadow: 0 0.5px 0 rgba(255, 255, 255, 0.5);
 }
 
 .lh-navbar-nav {
