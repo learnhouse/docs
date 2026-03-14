@@ -1,0 +1,68 @@
+import { Callout } from 'nextra/components'
+
+# Backups
+
+Regular backups are essential for protecting your LearnHouse data. The LearnHouse CLI provides built-in backup and restore functionality.
+
+## Creating a Backup
+
+Create a backup with a single command:
+
+```bash
+learnhouse backup
+```
+
+This creates a timestamped archive file containing:
+
+- **PostgreSQL database dump** -- all users, courses, organizations, and configuration data
+- **Uploaded content** -- images, videos, documents, and other files stored on the filesystem
+
+The backup file is saved in the current working directory with a name like `backup-2025-01-15-120000.tar.gz`.
+
+## Restoring from a Backup
+
+To restore from a backup file:
+
+```bash
+learnhouse restore backup-2025-01-15-120000.tar.gz
+```
+
+The restore process:
+
+1. Stops all running services
+2. Restores the database from the dump
+3. Restores uploaded content files
+4. Restarts all services
+
+<Callout type="warning">
+Restoring a backup overwrites all current data. Make sure you are restoring to the correct instance.
+</Callout>
+
+## Automating Backups
+
+It is recommended to set up automated backups using a cron job. For example, to create a daily backup at 2:00 AM:
+
+```bash
+# Edit your crontab
+crontab -e
+
+# Add this line for daily backups at 2 AM
+0 2 * * * /usr/local/bin/learnhouse backup
+```
+
+## Backup Retention
+
+Backup files can accumulate over time and consume significant disk space. Implement a retention policy to remove old backups. For example, keep the last 7 daily backups:
+
+```bash
+# Remove backups older than 7 days
+find /path/to/backups -name "backup-*.tar.gz" -mtime +7 -delete
+```
+
+## S3 Storage Considerations
+
+If you use S3-compatible storage for uploaded content, the `learnhouse backup` command backs up the database only. Your S3 content is managed by your storage provider, which typically offers its own backup and versioning features.
+
+<Callout type="info">
+For S3-based deployments, ensure your storage provider's backup or versioning features are enabled to protect uploaded content.
+</Callout>

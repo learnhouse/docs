@@ -1,0 +1,69 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:recommended",
+    ":disableRateLimiting",
+    "mergeConfidence:all-badges"
+  ],
+  "baseBranches": ["main"],
+  "schedule": ["every 3 weeks on saturday"],
+  "timezone": "UTC",
+  "labels": ["dependencies", "renovate"],
+  "prBodyColumns": [
+    "Package",
+    "Type",
+    "Update",
+    "Change",
+    "Age",
+    "Adoption",
+    "Passing",
+    "Confidence",
+    "Pending"
+  ],
+  "prBodyNotes": [
+    "Please review the changelog and release notes before merging."
+  ],
+  "assignees": ["swve"],
+  "reviewers": ["swve"],
+  "fetchChangeLogs": "pr",
+  "minimumReleaseAge": "3 days",
+  "rebaseWhen": "behind-base-branch",
+  "vulnerabilityAlerts": {
+    "labels": ["security", "renovate"],
+    "schedule": ["at any time"]
+  },
+  "packageRules": [
+    {
+      "matchPackageNames": ["next"],
+      "matchPackagePatterns": ["^@next/", "^eslint-config-next$"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "Next.js",
+      "groupSlug": "nextjs"
+    },
+    {
+      "matchPackageNames": ["react", "react-dom"],
+      "matchPackagePatterns": ["^@types/react", "^react-"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "React",
+      "groupSlug": "react"
+    },
+    {
+      "matchPackageNames": ["typescript"],
+      "matchPackagePatterns": ["^@types/"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "TypeScript & types",
+      "groupSlug": "typescript"
+    },
+    {
+      "matchPackagePatterns": ["^eslint", "^@eslint/"],
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "ESLint",
+      "groupSlug": "eslint"
+    },
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "groupName": "all non-major dependencies",
+      "groupSlug": "all-minor-patch"
+    }
+  ]
+}

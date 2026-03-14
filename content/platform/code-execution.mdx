@@ -1,0 +1,33 @@
+import { Callout } from 'nextra/components'
+
+# Code Execution
+
+LearnHouse integrates with Judge0 to provide sandboxed code execution for coding assignments. Students can write and run code directly in the platform, and teachers can define test cases for automatic grading.
+
+## Supported Languages
+
+The code execution engine supports 30+ programming languages including Python, JavaScript, Java, C, C++, Go, Rust, Ruby, and many more.
+
+## How It Works
+
+1. A teacher creates an assignment task with one or more test cases (input/output pairs).
+2. Students write their solution in the built-in code editor.
+3. On submission, the code is executed against all test cases in a sandboxed environment.
+4. Results are reported per test case — pass/fail, execution time, and memory usage.
+
+## Test Cases
+
+Each test case defines:
+
+- **Input** — The standard input provided to the program.
+- **Expected Output** — The output the program should produce.
+
+The system runs the student's code against each test case and compares the actual output to the expected output.
+
+<Callout>
+Code execution requires a Judge0 instance to be configured. See the [Self-Hosting Configuration](/self-hosting/configuration) for setup details.
+</Callout>
+
+## Batch Execution
+
+For assignments with multiple test cases, the platform executes all test cases in a single batch request, providing a comprehensive results summary that shows which tests passed and which failed.

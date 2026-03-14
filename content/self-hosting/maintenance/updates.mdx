@@ -1,0 +1,60 @@
+import { Callout } from 'nextra/components'
+
+# Updates
+
+Keeping LearnHouse up to date ensures you have the latest features, bug fixes, and security patches.
+
+## Updating LearnHouse
+
+There is no dedicated update command in the CLI. To update your instance, pull the latest Docker images and restart the services manually:
+
+```bash
+docker compose pull
+learnhouse stop
+learnhouse start
+```
+
+This pulls the latest LearnHouse Docker images (`ghcr.io/learnhouse/app:latest` and others), stops the running services, and starts them again with the new images.
+
+<Callout type="warning">
+Always create a backup before updating. This allows you to roll back if anything goes wrong.
+</Callout>
+
+## Recommended Update Procedure
+
+```bash
+# 1. Create a backup
+learnhouse backup
+
+# 2. Pull the latest images
+docker compose pull
+
+# 3. Restart services with the new images
+learnhouse stop
+learnhouse start
+
+# 4. Verify all services are healthy
+learnhouse doctor
+
+# 5. Check logs for any errors
+learnhouse logs
+```
+
+## Checking for Updates
+
+Review the [LearnHouse release notes](https://github.com/learnhouse/learnhouse/releases) before updating to understand what has changed. Some updates may include:
+
+- New features or UI changes
+- Database migrations (applied automatically)
+- Configuration changes that may require updating your `.env` file
+- Breaking changes (rare, but documented in release notes)
+
+## Rolling Back
+
+If an update causes issues, restore from your backup using the backup command:
+
+```bash
+learnhouse backup
+```
+
+The backup command handles both creating new backups and restoring from existing ones. Follow the prompts to select a restore operation, which will restore both the database and uploaded content to the state captured in the backup.

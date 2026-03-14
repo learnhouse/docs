@@ -1,0 +1,45 @@
+import { Callout } from 'nextra/components'
+
+# Single Sign-On (SSO)
+
+LearnHouse supports enterprise Single Sign-On, allowing organizations to authenticate users through their existing identity provider. This means users can log in with their company credentials without creating a separate LearnHouse account.
+
+<Callout>
+SSO requires an Enterprise plan.
+</Callout>
+
+## Supported Providers
+
+- **WorkOS** — Full implementation with admin portal support.
+- **Okta** — OIDC-based authentication.
+- **Auth0** — OIDC-based authentication.
+- **Keycloak** — Self-hosted identity provider support.
+- **Custom SAML** — Connect any SAML-compatible identity provider.
+- **Custom OIDC** — Connect any OIDC-compatible identity provider.
+
+## How SSO Works
+
+1. An admin configures SSO in the organization settings, selecting a provider and entering the required credentials.
+2. When a user visits the login page, they see an SSO login option if SSO is enabled for that organization.
+3. Clicking the SSO button redirects the user to the identity provider's login page.
+4. After authenticating with the IdP, the user is redirected back to LearnHouse with an active session.
+
+## User Provisioning
+
+When a user logs in via SSO for the first time, LearnHouse can automatically create their account using profile data from the identity provider:
+
+- **First name, last name, and email** are mapped from the IdP.
+- **Avatar** is imported if available.
+- **Default role** is assigned based on the SSO configuration (e.g., all new SSO users get the Student role).
+
+Existing users whose email matches are linked automatically — no duplicate accounts are created.
+
+## Configuration Options
+
+| Option | Description |
+|---|---|
+| Provider | Which identity provider to use. |
+| Email domain | Restrict SSO to specific email domains. |
+| Auto-provisioning | Automatically create accounts for new SSO users. |
+| Default role | Role assigned to newly provisioned users. |
+| Admin portal | Some providers (like WorkOS) offer an admin portal for managing the connection directly. |

@@ -1,0 +1,47 @@
+import { Callout } from 'nextra/components'
+
+# API Authentication
+
+The LearnHouse API supports **JWT cookies** for browser sessions and **API tokens** for programmatic access.
+
+## JWT Authentication
+
+Login to receive a JWT access token (HS256, expires in 8 hours):
+
+```bash
+curl -X POST http://localhost:1338/api/v1/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email": "you@example.com", "password": "your-password"}'
+```
+
+Then authenticate requests via the `Authorization` header:
+
+```bash
+curl http://localhost:1338/api/v1/users/me \
+  -H "Authorization: Bearer <access_token>"
+```
+
+The token is also set as an `access_token_cookie` for browser-based sessions. Use `/api/v1/auth/refresh` to renew expired tokens within the 30-day refresh window.
+
+## API Tokens
+
+<Callout type="info">
+API tokens are available on the **Pro plan**. Create and manage them in organization settings.
+</Callout>
+
+For programmatic access, use API tokens (prefixed with `lh_`):
+
+```bash
+curl http://localhost:1338/api/v1/users/me \
+  -H "Authorization: Bearer lh_your_api_token_here"
+```
+
+## Auth Endpoints
+
+| Method | Endpoint | Description |
+| --- | --- | --- |
+| `POST` | `/api/v1/auth/login` | Login and receive a JWT |
+| `GET` | `/api/v1/auth/refresh` | Refresh an expired token |
+| `DELETE` | `/api/v1/auth/logout` | Invalidate the session |
+| `POST` | `/api/v1/auth/oauth` | Google OAuth login |
+| `POST` | `/api/v1/auth/verify-email` | Verify email address |
