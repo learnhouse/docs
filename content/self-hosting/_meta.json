@@ -1,8 +1,6 @@
 {
-  "overview": "Overview",
-  "hosting-guide": "Self Hosting Guide",
+  "index": "Overview",
+  "installation": "Installation",
   "configuration": "Configuration",
-  "organization-hosting-modes": "Organization Hosting Modes",
-  "ai": "AI",
-  "content-storage": "Content Storage"
+  "maintenance": "Maintenance"
 }

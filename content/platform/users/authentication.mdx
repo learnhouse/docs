@@ -1,0 +1,26 @@
+import { Callout } from 'nextra/components'
+
+# Authentication
+
+LearnHouse supports multiple authentication methods to fit different deployment scenarios.
+
+## OAuth Providers
+
+LearnHouse supports OAuth login with providers like Google, depending on your configuration.
+
+## Signup Mechanisms
+
+Organizations can control how new users join the platform:
+
+- **Open signup** — Anyone can create an account and join the organization.
+- **Invite-only** — Only users who receive an invitation can create an account.
+
+The signup mechanism is configured per-organization in the [organization settings](/platform/organizations/settings).
+
+<Callout>
+Choose invite-only signup for private or internal deployments where you want to control exactly who has access.
+</Callout>
+
+## Session Management
+
+Once authenticated, users maintain a session via JWT tokens. The backend issues an access token (8-hour expiry) and a refresh token (30-day expiry) that keep users signed in across page loads.

@@ -1,0 +1,36 @@
+import { Callout } from 'nextra/components'
+import ArchitectureDiagram from '../../../components/ArchitectureDiagram/ArchitectureDiagram'
+
+# Architecture Overview
+
+LearnHouse is a multi-directory project with multiple applications that work together to deliver the full platform experience. The system follows a clear separation of concerns between the frontend, backend, and supporting services.
+
+## Project Structure
+
+```
+learnhouse/
+├── apps/
+│   ├── web/          # Next.js frontend
+│   ├── api/          # FastAPI backend
+│   ├── collab/       # Hocuspocus collaboration server
+│   └── cli/          # LearnHouse CLI
+└── community-edition/ # Docker Compose deployment config
+```
+
+## How It All Fits Together
+
+The platform consists of four applications backed by two core services:
+
+- **Web (Next.js)** -- The user-facing frontend that communicates with the backend API and the collaboration server.
+- **API (FastAPI)** -- The backend that handles authentication, course management, storage, uploads, AI features, and all business logic.
+- **Collab (Hocuspocus)** -- A WebSocket server that powers real-time collaborative editing with JWT authentication, Redis persistence, and per-board user limits.
+- **CLI (Commander)** -- A command-line tool used for local development and management tasks.
+
+<ArchitectureDiagram />
+
+## Backing Services
+
+LearnHouse relies on two primary backing services:
+
+- **PostgreSQL 16** -- The primary relational database for storing all application data including users, courses, organizations, and activity records. Uses the pgvector extension for AI embedding storage.
+- **Redis 7.2** -- Used for caching, session management, collaboration state persistence, and message brokering between services.

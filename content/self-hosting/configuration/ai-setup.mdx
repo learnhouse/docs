@@ -1,0 +1,67 @@
+import { Callout } from 'nextra/components'
+
+# AI Setup
+
+LearnHouse includes AI-powered features for learning assistance and content editing. The primary AI provider is **Google Gemini**, with OpenAI also supported as an alternative. These features are optional and disabled by default.
+
+LearnHouse uses **llama-index** with **pgvector** for RAG (Retrieval-Augmented Generation), enabling AI assistants to answer questions using your course content as context.
+
+## Enabling AI
+
+### Using Google Gemini (Recommended)
+
+Set the following environment variables in your `.env` file:
+
+```env
+LEARNHOUSE_GEMINI_API_KEY=your-gemini-api-key
+LEARNHOUSE_IS_AI_ENABLED=true
+```
+
+To get a Gemini API key, visit [Google AI Studio](https://aistudio.google.com/apikey).
+
+### Using OpenAI
+
+Alternatively, you can use OpenAI as your AI provider:
+
+```env
+LEARNHOUSE_OPENAI_API_KEY=sk-your-openai-api-key
+LEARNHOUSE_IS_AI_ENABLED=true
+```
+
+After updating your `.env` file, restart your instance:
+
+```bash
+learnhouse stop
+learnhouse start
+```
+
+<Callout type="warning">
+AI features require a valid API key with sufficient credits. Usage costs are billed directly by your chosen provider based on the models and volume used.
+</Callout>
+
+## Per-Organization AI Configuration
+
+AI settings can also be configured on a per-organization basis through the organization configuration in the admin panel. This allows you to:
+
+- Enable or disable AI for specific organizations
+- Select which AI model to use per organization
+- Control which AI features are available
+
+## AI Feature Toggles
+
+The following AI features can be individually enabled or disabled per organization:
+
+| Feature | Description |
+|---|---|
+| `activity_ask` | AI assistant within learning activities, allows learners to ask questions about activity content |
+| `course_ask` | AI assistant at the course level, answers questions using the full course material as context |
+| `editor` | AI-powered writing assistance in the content editor |
+| `global_ai_ask` | Global AI assistant available across the platform |
+
+## Usage Limits
+
+You can configure usage limits per organization to control API costs. Limits can be set on the number of AI requests per user per day, preventing unexpected charges on your provider account.
+
+## Model Selection
+
+The AI model used for generating responses can be configured per organization. This allows you to balance quality and cost by choosing different models for different use cases.

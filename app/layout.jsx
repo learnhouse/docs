@@ -1,28 +1,54 @@
-import { Footer, Layout, Navbar } from 'nextra-theme-docs'
+import { Layout } from 'nextra-theme-docs'
 import { Head } from 'nextra/components'
 import { getPageMap } from 'nextra/page-map'
 import 'nextra-theme-docs/style.css'
+import '../styles.css'
 import { Analytics } from '@vercel/analytics/react'
-import Logo from '../components/Logo/Logo'
+import CustomNavbar from '../components/Navbar/Navbar'
+import CustomFooter from '../components/Footer/Footer'
+import PostHogProvider from '../components/Analytics/PostHogProvider'
 
 export const metadata = {
   title: {
     default: 'LearnHouse Docs',
     template: '%s – LearnHouse Docs',
   },
-  description: 'The next-gen open source learning software',
+  description:
+    'Official documentation for LearnHouse, the open-source learning management system (LMS). Guides for self-hosting, course creation, AI features, API reference, and more.',
+  keywords: [
+    'LearnHouse',
+    'open source LMS',
+    'learning management system',
+    'self-hosted LMS',
+    'course creation',
+    'LearnHouse documentation',
+    'LearnHouse docs',
+  ],
   metadataBase: new URL('https://docs.learnhouse.app'),
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://docs.learnhouse.app',
     siteName: 'LearnHouse Docs',
+    description:
+      'Official documentation for LearnHouse, the open-source learning management system (LMS). Guides for self-hosting, course creation, AI features, API reference, and more.',
     images: [
       {
-        url: 'https://docs.learnhouse.app/img/og.png',
+        url: 'https://docs.learnhouse.app/img/pages/learnhouse-github.png',
         alt: 'LearnHouse Docs',
-        width: 1512,
-        height: 687,
+        width: 2051,
+        height: 1016,
       },
     ],
   },
@@ -41,23 +67,49 @@ export const metadata = {
   manifest: '/favicons/site.webmanifest',
 }
 
-const navbar = <Navbar logo={<Logo />} projectLink="https://github.com/learnhouse/learnhouse" chatLink="https://discord.gg/CMyZjjYZ6x" />
-const footer = <Footer>MIT {new Date().getFullYear()} © LearnHouse.</Footer>
+const websiteJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'LearnHouse Documentation',
+  url: 'https://docs.learnhouse.app',
+  publisher: {
+    '@type': 'Organization',
+    name: 'LearnHouse',
+    url: 'https://learnhouse.app',
+  },
+}
 
 export default async function RootLayout({ children }) {
   return (
     <html lang="en" dir="ltr" suppressHydrationWarning>
-      <Head />
+      <Head faviconGlyph="">
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Wix+Madefor+Text:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Wix+Madefor+Display:wght@600;700;800;900&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;600;700&display=swap" rel="stylesheet" />
+      </Head>
       <body>
-        <Layout
-          navbar={navbar}
-          footer={footer}
-          pageMap={await getPageMap()}
-          docsRepositoryBase="https://github.com/learnhouse/docs/tree/main"
-          sidebar={{ defaultMenuCollapseLevel: 2 }}
-        >
-          {children}
-        </Layout>
+        <script dangerouslySetInnerHTML={{ __html: `document.documentElement.classList.remove('dark');document.documentElement.classList.add('light');document.documentElement.style.colorScheme='light';localStorage.setItem('theme','light');` }} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+        <PostHogProvider>
+          <CustomNavbar />
+          <Layout
+            pageMap={await getPageMap()}
+            docsRepositoryBase="https://github.com/learnhouse/docs/tree/main"
+            sidebar={{ defaultMenuCollapseLevel: 2 }}
+            editLink="Edit this page on GitHub"
+            footer={<></>}
+            navbar={<></>}
+          >
+            {children}
+          </Layout>
+          <CustomFooter />
+        </PostHogProvider>
         <Analytics />
       </body>
     </html>

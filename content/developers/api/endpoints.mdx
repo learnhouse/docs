@@ -1,0 +1,186 @@
+import { Callout } from 'nextra/components'
+
+# API Endpoints
+
+This page provides an overview of all API endpoint groups available in LearnHouse. All endpoints are prefixed with `/api/v1/`. For the full interactive reference with request and response schemas, visit the Swagger UI at `/docs` on a development instance.
+
+<Callout type="info">
+The complete, interactive API documentation is available at [http://localhost:1338/docs](http://localhost:1338/docs) in development mode only. It includes every endpoint, parameter, and response schema.
+</Callout>
+
+## Core Endpoint Groups
+
+### Authentication
+
+Login, logout, token refresh, OAuth, and email verification.
+
+```bash
+# Login
+curl -X POST http://localhost:1338/api/v1/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email": "user@example.com", "password": "password"}'
+```
+
+See [Authentication](/developers/api/authentication) for full details.
+
+### Users
+
+User CRUD, profile management, session info, and password reset.
+
+```bash
+# Get current user profile
+curl http://localhost:1338/api/v1/users/me \
+  -H "Authorization: Bearer <token>"
+```
+
+### Organizations
+
+Organization CRUD, user management, roles, invites, configuration, SEO settings, branding, API tokens, and custom domains.
+
+```bash
+# Get organization details
+curl http://localhost:1338/api/v1/orgs/{org_slug} \
+  -H "Authorization: Bearer <token>"
+```
+
+### Courses
+
+Course CRUD, cloning, export/import, and contributor management.
+
+```bash
+# List courses in an organization
+curl http://localhost:1338/api/v1/courses \
+  -H "Authorization: Bearer <token>"
+
+# Create a new course
+curl -X POST http://localhost:1338/api/v1/courses \
+  -H "Authorization: Bearer <token>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Introduction to Python",
+    "description": "A beginner-friendly Python course"
+  }'
+```
+
+### Chapters
+
+Chapter CRUD and ordering within courses.
+
+```bash
+# List chapters in a course
+curl http://localhost:1338/api/v1/chapters \
+  -H "Authorization: Bearer <token>"
+```
+
+### Activities
+
+Activity CRUD -- individual content units within chapters (pages, videos, documents).
+
+```bash
+# Get activities
+curl http://localhost:1338/api/v1/activities \
+  -H "Authorization: Bearer <token>"
+```
+
+### Blocks
+
+Block CRUD -- content blocks within activities.
+
+### Collections
+
+Collections group related courses together for organization and discovery.
+
+```bash
+# List collections
+curl http://localhost:1338/api/v1/collections \
+  -H "Authorization: Bearer <token>"
+```
+
+### Assignments
+
+Assignment CRUD for course assessments.
+
+### AI
+
+AI-powered features including an assistant, magic blocks, course planning, and RAG (Retrieval-Augmented Generation).
+
+```bash
+# AI endpoints vary by configuration
+curl http://localhost:1338/api/v1/ai/chat \
+  -H "Authorization: Bearer <token>" \
+  -H "Content-Type: application/json" \
+  -d '{"message": "Explain this concept"}'
+```
+
+### Analytics
+
+Course analytics and usage tracking.
+
+### Search
+
+Full-text search across courses and content.
+
+### Code Execution
+
+Code execution endpoints powered by Judge0.
+
+### Learning Trails
+
+Learning trail management and progress tracking.
+
+### Video Streaming
+
+Video streaming and delivery endpoints.
+
+## Community Features (Standard Plan)
+
+### Communities
+
+Community forums for organizations.
+
+### Discussions
+
+Discussion threads within communities.
+
+### User Groups
+
+User group management for organizing learners.
+
+## Pro Features (Pro Plan)
+
+### Certifications
+
+Certificate generation and management for course completion.
+
+### Boards
+
+Collaborative whiteboards for interactive learning.
+
+### Playgrounds
+
+AI-generated interactive elements for hands-on learning.
+
+### Podcasts
+
+Podcast and episode CRUD for audio content delivery.
+
+## Infrastructure Endpoints
+
+| Method | Endpoint | Description |
+| --- | --- | --- |
+| `GET` | `/api/v1/health` | Health check |
+| `GET` | `/api/v1/instance/info` | Public instance information |
+| `GET` | `/api/v1/content/...` | Content delivery (filesystem or S3) |
+| `GET` | `/openapi.json` | OpenAPI spec (dev mode only) |
+
+## Common Patterns
+
+- All endpoints are prefixed with `/api/v1/`.
+- Resources follow standard REST conventions: `GET` to list or retrieve, `POST` to create, `PUT` to update, `DELETE` to remove.
+- Authenticated endpoints require either the `Authorization: Bearer <token>` header or the `access_token_cookie` cookie.
+- Programmatic access uses API tokens with the `lh_` prefix (Pro plan).
+- Responses are returned as JSON.
+
+<Callout type="info">
+Endpoint paths and request/response schemas may evolve between versions. Always refer to the interactive `/docs` endpoint on a development instance for the most up-to-date reference.
+</Callout>

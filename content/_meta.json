@@ -1,19 +1,17 @@
 {
-  "-- Overview": {
-    "type": "separator",
-    "title": "Overview"
-  },
   "index": "Introduction",
-  "features": "Features",
-  "-- Self Hosting": {
+  "-- Getting Started": {
     "type": "separator",
-    "title": "Self Hosting"
+    "title": "Getting Started"
   },
-  "self-hosting": "Get started",
-  "-- Developers": {
+  "getting-started": "Getting Started",
+  "-- Platform": {
     "type": "separator",
-    "title": "Developers"
+    "title": "Platform"
   },
-  "setup-dev-environment": "Dev Environment",
-  "concepts": "Concepts"
+  "platform": "Platform",
+  "self-hosting": "Self Hosting",
+  "developers": "Developers",
+  "cli": "CLI",
+  "enterprise": "Enterprise Edition"
 }

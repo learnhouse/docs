@@ -1,0 +1,110 @@
+# CLI Reference
+
+Complete reference for all LearnHouse CLI commands. The CLI is published as `learnhouse` on npm (v1.1.0) and is typically run via `npx learnhouse@latest`.
+
+## Setup and Configuration
+
+### `learnhouse setup`
+
+Run the interactive setup wizard. This command generates `docker-compose.yml`, `.env`, `learnhouse.config.json`, and nginx/Caddy configuration files based on your choices.
+
+```bash
+learnhouse setup
+```
+
+You can re-run this command at any time to reconfigure your instance. Existing configuration will be preserved as defaults in the prompts.
+
+### `learnhouse config`
+
+View the current configuration.
+
+```bash
+learnhouse config
+```
+
+## Service Management
+
+### `learnhouse start`
+
+Start all LearnHouse services. On first run, this pulls the required Docker images before starting containers.
+
+```bash
+learnhouse start
+```
+
+### `learnhouse stop`
+
+Stop all running LearnHouse services. Data is preserved in Docker volumes.
+
+```bash
+learnhouse stop
+```
+
+### `learnhouse logs`
+
+Stream container logs for all services.
+
+```bash
+learnhouse logs
+```
+
+### `learnhouse dev`
+
+Start a full development environment. Useful when working on LearnHouse locally.
+
+```bash
+learnhouse dev
+```
+
+## Diagnostics
+
+### `learnhouse doctor`
+
+Run diagnostics on your LearnHouse installation. Checks Docker availability, container health, port conflicts, DNS resolution, and disk space.
+
+```bash
+learnhouse doctor
+```
+
+### `learnhouse shell`
+
+Open an interactive shell inside a running container for debugging.
+
+```bash
+learnhouse shell
+```
+
+## Infrastructure
+
+### `learnhouse deployments`
+
+View or set resource limits (CPU, memory) for your LearnHouse containers.
+
+```bash
+learnhouse deployments
+```
+
+## Backup
+
+### `learnhouse backup`
+
+Backup or restore the database. This command handles both creating new backups and restoring from existing backup files.
+
+```bash
+learnhouse backup
+```
+
+## Command Summary
+
+| Command | Description |
+|---|---|
+| `learnhouse setup` | Interactive setup wizard, generates docker-compose.yml, .env, and config files |
+| `learnhouse start` | Start all services |
+| `learnhouse stop` | Stop all services |
+| `learnhouse logs` | Stream container logs |
+| `learnhouse config` | View current configuration |
+| `learnhouse doctor` | Diagnose Docker, containers, ports, DNS, and disk |
+| `learnhouse shell` | Open a shell in a running container |
+| `learnhouse backup` | Backup or restore the database |
+| `learnhouse deployments` | View or set resource limits |
+| `learnhouse dev` | Start full development environment |
