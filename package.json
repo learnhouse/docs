@@ -27,6 +27,6 @@
     "@types/react": "19.2.14",
     "pagefind": "^1.4.0",
     "tailwindcss": "^4.2.1",
-    "typescript": "5.9.3"
+    "typescript": "6.0.2"
   }
 }
