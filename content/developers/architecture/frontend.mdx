@@ -4,9 +4,9 @@ The LearnHouse frontend is a **Next.js 16** application located at `apps/web` in
 
 ## Technology Stack
 
-- **Next.js 16.1.6** with the App Router (standalone output)
-- **React 19.2.4** with Server Components
-- **TypeScript 5.9.3**
+- **Next.js 16.2.3** with the App Router (standalone output)
+- **React 19.2.5** with Server Components
+- **TypeScript 6.0.2**
 - **TailwindCSS v4** for styling
 - **Bun** as the package manager
 - **Turbopack** for development builds (`next dev --turbopack`)
@@ -51,11 +51,15 @@ The frontend communicates with the FastAPI backend over HTTP. API calls are made
 
 ```
 apps/web/
-├── app/              # App Router pages and layouts
-├── components/       # Reusable UI components
-├── services/         # API client and service functions
-├── store/            # Client-side state management
-└── public/           # Static assets
+├── app/           # App Router pages and layouts
+├── components/    # Reusable UI components
+├── services/      # API client and service functions
+├── hooks/         # Shared React hooks
+├── lib/           # Utilities and client helpers
+├── locales/       # i18next translation resources
+├── styles/        # Global styles
+├── ee/            # Enterprise Edition components
+└── public/        # Static assets
 ```
 
 ## Development

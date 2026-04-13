@@ -10,13 +10,15 @@ Make sure you have the following installed before proceeding:
 
 - **Docker** (with Docker Compose v2)
 - **Node.js 18+**
+- **[Bun](https://bun.sh/)** — used to install and run the web and collab workspaces
+- **[uv](https://docs.astral.sh/uv/)** — used to manage and run the Python API
 
 <Callout type="warning">
 Make sure Docker has at least **4GB of RAM** allocated. You can check and adjust this in Docker Desktop under Settings &gt; Resources.
 </Callout>
 
 <Callout type="info">
-You do **not** need to install Python, uv, Bun, or any other tooling manually. The `npx learnhouse dev` command handles all dependency installation automatically.
+`npx learnhouse dev` runs `bun install` and `uv sync` to install project dependencies, but it does **not** install `bun` or `uv` themselves — install them on your host first.
 </Callout>
 
 ## Setup Steps
@@ -57,6 +59,6 @@ Press `Ctrl+C` in the terminal where `npx learnhouse dev` is running to stop all
 
 ## Troubleshooting
 
-- **Port conflicts** -- Make sure ports 3000 and 1338 are not in use by other applications.
+- **Port conflicts** -- Make sure ports 3000 (web), 1338 (API), 4000 (collab), 5432 (Postgres), and 6379 (Redis) are not in use by other applications.
 - **Docker not running** -- Ensure the Docker daemon is started before running `npx learnhouse dev`.
 - **Dependency issues** -- The CLI installs all dependencies automatically. If you encounter issues, try deleting `node_modules` and `.venv` directories and re-running `npx learnhouse dev`.

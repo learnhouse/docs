@@ -78,8 +78,8 @@ Backups are saved to `{installDir}/backups/learnhouse-backup-{timestamp}.tar.gz`
 Restore a database from a backup archive. This overwrites the current database.
 
 ```bash
-npx learnhouse backup --restore
 npx learnhouse restore <archive.tar.gz>
+npx learnhouse backup --restore <archive.tar.gz>
 ```
 
 <Callout type="warning">
@@ -96,7 +96,7 @@ npx learnhouse deployments
 
 Features:
 - List all LearnHouse deployments with container status
-- Scale resource limits (memory) for `learnhouse-app`, `db`, and `redis`
+- Scale memory limits for `learnhouse-app`, `db`, and `redis`
 - View current resource usage via `docker stats`
 
 ## `shell`
@@ -117,7 +117,7 @@ Interactive environment variable editor. Edit variables by category:
 - Database & Redis
 - Security
 - AI
-- Email
+- Email (Resend only — edit `.env` directly to set SMTP credentials)
 - S3 Storage
 - OAuth
 
@@ -147,4 +147,29 @@ npx learnhouse dev
 
 | Flag | Description |
 | --- | --- |
-| `--ee` | Enable Enterprise Edition features |
+| `--ee` | Enable Enterprise Edition features (keeps the `ee/` folder active) |
+| `--admin-email <email>` | Admin email (default: `admin@school.dev`) |
+| `--admin-password <password>` | Admin password (skips the interactive prompt) |
+
+## `update`
+
+Update LearnHouse to the latest release or a specific version. See [Updates](/self-hosting/maintenance/updates) for details.
+
+```bash
+npx learnhouse update
+npx learnhouse update --version 1.4.2
+```
+
+| Flag | Description |
+| --- | --- |
+| `--version <tag>` | Pull a specific image tag from `ghcr.io/learnhouse/app` |
+| `--migrate` | Run database migrations without prompting |
+| `--no-migrate` | Skip database migrations without prompting |
+
+## `status`
+
+Show the status of each LearnHouse service.
+
+```bash
+npx learnhouse status
+```

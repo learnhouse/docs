@@ -10,12 +10,15 @@ LearnHouse is a multi-directory project with multiple applications that work tog
 ```
 learnhouse/
 ├── apps/
-│   ├── web/          # Next.js frontend
-│   ├── api/          # FastAPI backend
-│   ├── collab/       # Hocuspocus collaboration server
-│   └── cli/          # LearnHouse CLI
-└── community-edition/ # Docker Compose deployment config
+│   ├── web/      # Next.js frontend
+│   ├── api/      # FastAPI backend
+│   ├── collab/   # Hocuspocus collaboration server
+│   └── cli/      # LearnHouse CLI
+├── docker/       # Production Dockerfile helpers (nginx config, start.sh)
+└── Dockerfile    # Monolithic image used by the CLI setup wizard
 ```
+
+Self-hosted deployments do not have a checked-in `docker-compose.yml`. The LearnHouse CLI (`apps/cli`) generates `docker-compose.yml`, `.env`, and reverse proxy config at setup time from the templates in `apps/cli/src/templates/`.
 
 ## How It All Fits Together
 
@@ -32,5 +35,5 @@ The platform consists of four applications backed by two core services:
 
 LearnHouse relies on two primary backing services:
 
-- **PostgreSQL 16** -- The primary relational database for storing all application data including users, courses, organizations, and activity records. Uses the pgvector extension for AI embedding storage.
-- **Redis 7.2** -- Used for caching, session management, collaboration state persistence, and message brokering between services.
+- **PostgreSQL 16 (pgvector)** -- The primary relational database for storing all application data including users, courses, organizations, and activity records. Uses the pgvector extension for AI embedding storage. Both dev and self-host production use the `pgvector/pgvector:pg16` image.
+- **Redis** -- Used for caching, session management, collaboration state persistence, and message brokering between services. Dev mode uses `redis:8.6.1-alpine`; the CLI-generated self-host production stack uses `redis:7.2.3-alpine`.

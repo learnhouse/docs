@@ -29,8 +29,7 @@ Choose local Docker containers or connect to external services.
 ### PostgreSQL
 
 - **Local Docker** (recommended):
-  - **AI-enabled** (recommended) — Uses `pgvector/pgvector:pg16` for RAG and vector search features
-  - **Standard** — Uses `postgres:16-alpine`, lighter footprint
+  - Uses `pgvector/pgvector:pg16` (PostgreSQL 16 with the pgvector extension, used for AI/RAG features when enabled)
   - Password is auto-generated
 - **External** — Provide a connection string (`postgresql://user:pass@host:5432/db`). The wizard tests connectivity before proceeding.
 
@@ -88,8 +87,8 @@ Each deployment gets a unique 8-character ID for container and network isolation
 
 | Service | Image | Purpose |
 | --- | --- | --- |
-| `learnhouse-app-{id}` | `ghcr.io/learnhouse/app` | Next.js + FastAPI application |
-| `learnhouse-db-{id}` | `pgvector:pg16` or `postgres:16-alpine` | PostgreSQL database |
+| `learnhouse-app-{id}` | `ghcr.io/learnhouse/app:latest` (or `:dev`) | Next.js + FastAPI application |
+| `learnhouse-db-{id}` | `pgvector/pgvector:pg16` | PostgreSQL database |
 | `learnhouse-redis-{id}` | `redis:7.2.3-alpine` | Redis cache |
 | `learnhouse-caddy-{id}` | `caddy:2-alpine` | Reverse proxy with auto-SSL |
 | `learnhouse-nginx-{id}` | `nginx:alpine` | Reverse proxy (no auto-SSL) |
@@ -102,6 +101,7 @@ The wizard optionally starts the deployment and waits up to 3 minutes for the he
 
 During setup you choose a release channel:
 
-- **Stable** — Recommended for production
-- **Dev** — Bleeding edge, latest features
-- **Custom** — Specify an exact image tag
+- **Stable** — Recommended for production (pulls `ghcr.io/learnhouse/app:latest`)
+- **Dev** — Bleeding edge, latest features (pulls `ghcr.io/learnhouse/app:dev`)
+
+To pin to a specific image tag after setup, use `learnhouse update --version <tag>`.

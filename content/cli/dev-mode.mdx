@@ -21,14 +21,16 @@ The command splits infrastructure and application services:
 - [bun](https://bun.sh/) (for web and collab dependencies)
 - [uv](https://docs.astral.sh/uv/) (for Python API dependencies)
 
-The CLI auto-installs dependencies (`bun install`, `uv sync`) if `node_modules` or `.venv` are missing.
+<Callout type="warning">
+`bun` and `uv` must be installed beforehand. The CLI runs `bun install` and `uv sync` to install project dependencies, but it does not install the package managers themselves.
+</Callout>
 
 ## Startup Flow
 
 1. **Detect project root** — Looks for the monorepo structure (`apps/api`, `apps/web`, `apps/collab`)
 2. **Start infrastructure** — Launches PostgreSQL and Redis containers (reuses existing ones if running)
 3. **Health checks** — Waits for database and Redis to be ready
-4. **Admin setup** — On first run, prompts for admin email and password. Credentials are saved and reused on subsequent runs.
+4. **Admin setup** — When the database and Redis containers are created for the first time, prompts for an admin email and password. On subsequent runs with existing containers, the prompt is skipped and the existing credentials remain valid. You can also pass `--admin-email` and `--admin-password` to skip the prompt.
 5. **Install dependencies** — Runs `bun install` and `uv sync` if needed
 6. **Start services** — Launches API, Web, and Collab with color-coded output
 

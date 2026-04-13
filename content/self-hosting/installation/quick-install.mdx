@@ -17,12 +17,12 @@ You can also use the one-line installer scripts if you prefer:
 
 **macOS / Linux:**
 ```bash
-curl -fsSL https://raw.githubusercontent.com/learnhouse/learnhouse/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/learnhouse/learnhouse/main/apps/cli/install.sh | bash
 ```
 
 **Windows (PowerShell):**
 ```powershell
-irm https://raw.githubusercontent.com/learnhouse/learnhouse/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/learnhouse/learnhouse/main/apps/cli/install.ps1 | iex
 ```
 </Callout>
 
@@ -40,7 +40,7 @@ The wizard generates `docker-compose.yml`, `.env`, `learnhouse.config.json`, and
 Once setup is complete, start all services:
 
 ```bash
-learnhouse start
+npx learnhouse start
 ```
 
 The CLI will pull the required Docker images (on first run), create the containers, and start all services. This typically takes one to two minutes on first launch.

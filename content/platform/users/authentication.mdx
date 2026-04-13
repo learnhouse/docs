@@ -4,9 +4,16 @@ import { Callout } from 'nextra/components'
 
 LearnHouse supports multiple authentication methods to fit different deployment scenarios.
 
-## OAuth Providers
+## Login Methods
 
-LearnHouse supports OAuth login with providers like Google, depending on your configuration.
+- **Email and password** — the default authentication method for every LearnHouse instance.
+- **Google OAuth** — the only third-party login provider currently supported outside of Enterprise SSO.
+
+For enterprise deployments, SAML (via WorkOS) and Custom OIDC are available — see [Enterprise SSO](/enterprise/sso).
+
+## Security
+
+Logins are rate-limited per IP, and accounts are temporarily locked after repeated failed attempts. SaaS-mode deployments additionally require users to verify their email address before they can sign in.
 
 ## Signup Mechanisms
 

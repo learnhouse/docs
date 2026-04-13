@@ -6,22 +6,26 @@ The LearnHouse API supports **JWT cookies** for browser sessions and **API token
 
 ## JWT Authentication
 
-Login to receive a JWT access token (HS256, expires in 8 hours):
+The login endpoint accepts `application/x-www-form-urlencoded` data with `username` (the user's email) and `password` fields, and returns a JWT access token (HS256, expires in 8 hours):
 
 ```bash
 curl -X POST http://localhost:1338/api/v1/auth/login \
-  -H "Content-Type: application/json" \
-  -d '{"email": "you@example.com", "password": "your-password"}'
+  -F 'username=you@example.com' \
+  -F 'password=your-password'
 ```
 
 Then authenticate requests via the `Authorization` header:
 
 ```bash
-curl http://localhost:1338/api/v1/users/me \
+curl http://localhost:1338/api/v1/users/profile \
   -H "Authorization: Bearer <access_token>"
 ```
 
-The token is also set as an `access_token_cookie` for browser-based sessions. Use `/api/v1/auth/refresh` to renew expired tokens within the 30-day refresh window.
+The token is also set as an `access_token_cookie` for browser-based sessions. Use `GET /api/v1/auth/refresh` to renew expired tokens within the 30-day refresh window.
+
+<Callout type="info">
+Logins are rate-limited by IP, and repeated failed attempts temporarily lock the account. SaaS deployments also require `email_verified=true` before login succeeds.
+</Callout>
 
 ## API Tokens
 
@@ -32,7 +36,7 @@ API tokens are available on the **Pro plan**. Create and manage them in organiza
 For programmatic access, use API tokens (prefixed with `lh_`):
 
 ```bash
-curl http://localhost:1338/api/v1/users/me \
+curl http://localhost:1338/api/v1/users/profile \
   -H "Authorization: Bearer lh_your_api_token_here"
 ```
 
@@ -40,8 +44,9 @@ curl http://localhost:1338/api/v1/users/me \
 
 | Method | Endpoint | Description |
 | --- | --- | --- |
-| `POST` | `/api/v1/auth/login` | Login and receive a JWT |
+| `POST` | `/api/v1/auth/login` | Login with form-encoded `username` + `password` |
 | `GET` | `/api/v1/auth/refresh` | Refresh an expired token |
 | `DELETE` | `/api/v1/auth/logout` | Invalidate the session |
 | `POST` | `/api/v1/auth/oauth` | Google OAuth login |
 | `POST` | `/api/v1/auth/verify-email` | Verify email address |
+| `POST` | `/api/v1/auth/resend-verification` | Resend a verification email |

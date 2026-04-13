@@ -6,13 +6,13 @@ The LearnHouse backend is a **FastAPI** application written in Python, located a
 
 ## Technology Stack
 
-- **FastAPI** >= 0.135.1 -- High-performance Python web framework
-- **Python 3.14.3**
-- **SQLModel** >= 0.0.37 -- ORM for database interactions (built on SQLAlchemy and Pydantic)
+- **FastAPI** 0.135.3 -- High-performance Python web framework
+- **Python 3.14**
+- **SQLModel** 0.0.38 -- ORM for database interactions (built on SQLAlchemy and Pydantic)
 - **Alembic** -- Database migration management
 - **PostgreSQL 16** with **pgvector** extension -- Primary relational database
-- **Redis** >= 7.2.1 -- Caching layer and session storage
-- **Uvicorn** 0.41.0 -- ASGI server
+- **redis-py** 7.4.0 -- Python Redis client
+- **Uvicorn** 0.44.0 -- ASGI server
 - **uv** -- Python package manager
 
 ## Key Dependencies
@@ -20,7 +20,7 @@ The LearnHouse backend is a **FastAPI** application written in Python, located a
 - **psycopg2-binary** -- PostgreSQL adapter
 - **pyjwt[crypto]** -- JWT token handling
 - **pwdlib[argon2]** -- Password hashing with Argon2
-- **google-genai** >= 1.65.0 -- Gemini AI integration
+- **google-genai** 1.71.0 -- Gemini AI integration (the only AI provider)
 - **llama-index-core + pgvector** -- RAG and vector embeddings
 - **stripe** -- Payment processing
 - **workos** -- Enterprise SSO
@@ -89,8 +89,8 @@ apps/api/
 The backend runs on **port 1338** by default during local development (configurable via `LEARNHOUSE_PORT`). In production Docker deployments, it runs on port 9000. Install dependencies and run the server:
 
 ```bash
-uv sync          # install dependencies
-uv run uvicorn   # start the dev server
+uv sync              # install dependencies
+uv run python app.py # start the dev server (which calls uvicorn internally)
 ```
 
 When using the LearnHouse CLI (`learnhouse dev`), the backend starts automatically with hot reload enabled.

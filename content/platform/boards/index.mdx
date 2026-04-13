@@ -2,7 +2,7 @@ import { Callout } from 'nextra/components'
 
 # Boards
 
-Boards are collaborative documents that multiple users can edit together in real time. They use the same block-based editor as course activities but are designed for freeform collaboration outside the course structure.
+Boards are real-time collaborative **canvases** — a Miro / FigJam-style freeform workspace that multiple users can pan, zoom, and edit together. They are not document editors and do not reuse the course-activity block editor.
 
 <Callout>
 Boards must be enabled in your [Organization Settings](/platform/organizations/settings) to be available.
@@ -10,17 +10,18 @@ Boards must be enabled in your [Organization Settings](/platform/organizations/s
 
 ## How Boards Work
 
-A board is a shared document with real-time synchronization powered by Yjs. Multiple users can view and edit a board simultaneously, with changes synced instantly across all participants.
+Each board is an infinite canvas backed by Yjs CRDTs, so concurrent edits merge without conflicts. The collaboration server (Hocuspocus) syncs changes in real time over WebSockets and persists document state to Redis and PostgreSQL.
 
 ## Key Features
 
-- **Real-time collaboration** — Multiple users can edit a board at the same time with live cursor tracking and instant sync.
-- **Role-based access** — Board members can be assigned roles: **Owner**, **Editor**, or **Viewer**.
-- **Block-based editing** — Boards use the same rich block editor as course activities, supporting text, media, and advanced blocks.
+- **Real-time collaboration** — Multiple users can edit a board at the same time with live presence and cursor tracking.
+- **Role-based access** — Board members are assigned one of three roles: **Owner**, **Editor**, or **Viewer**.
+- **Canvas tools** — Drawing strokes, sticky notes, to-do cards, frames, and freeform pan/zoom navigation.
+- **Rich embeds** — Drop in webpages, YouTube videos, podcasts, activities, AI-generated playgrounds, and other LearnHouse resources as cards on the canvas.
 - **Member management** — Board owners can invite members and manage their access levels.
 
 ## Use Cases
 
-- **Group projects** — Students collaborate on shared documents for team assignments.
-- **Meeting notes** — Teachers and staff maintain shared notes for planning and coordination.
-- **Brainstorming** — Teams use boards as collaborative whiteboards for idea generation.
+- **Group projects** — Students collaborate on shared boards for team assignments.
+- **Planning and brainstorming** — Teachers and staff map ideas, lesson plans, or workflows visually.
+- **Workshops** — Run live exercises where the whole class contributes to a single shared surface.

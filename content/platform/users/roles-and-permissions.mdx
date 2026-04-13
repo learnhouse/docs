@@ -1,6 +1,8 @@
 # Roles and Permissions
 
-LearnHouse uses a role-based access control model. Every user within an organization is assigned one of three roles.
+LearnHouse uses a role-based access control model. Roles are stored as database rows with a per-resource permission matrix (courses, users, usergroups, collections, organizations, chapters, activities, roles, dashboard, communities, discussions, podcasts, boards, playgrounds), so organizations can customize permissions or create their own roles on top of the defaults.
+
+Every new instance is seeded with four default global roles:
 
 ## Admin
 
@@ -11,24 +13,36 @@ Admins have full control over the organization. They can:
 - Configure organization settings (branding, AI, signup)
 - Access all platform features
 
-## Teacher / Staff
+## Maintainer
 
-Teachers and staff members can create and manage educational content. They can:
+Maintainers are mid-level managers who can operate most of the organization day-to-day but cannot change platform-level settings. They can:
 
-- Create and edit courses, chapters, and activities
-- View student Trails and quiz results
+- Manage courses, collections, and published content
+- Manage users within the organization
+- Moderate community discussions and boards
+
+## Instructor
+
+Instructors focus on teaching and creating educational content. They can:
+
+- Create and edit their own courses, chapters, and activities
+- View learner progress for their courses
 - Use the AI assistant for content creation
-- Manage collections
+- Manage collections they own
 
-Teachers cannot modify organization-level settings or manage other users' roles.
+Instructors cannot modify organization-level settings or manage other users' roles.
 
-## Student
+## User
 
-Students are the primary learners on the platform. They can:
+Users are the default learner role. They can:
 
 - Browse and enroll in available courses
-- Complete activities and quizzes
+- Complete activities, assignments, and quizzes
 - View their own Trail and progress
 - Interact with the AI assistant for learning support
 
-Students cannot create or edit courses or access administrative features.
+Users cannot create or edit courses or access administrative features.
+
+## Custom Roles
+
+Admins can create additional roles (global or organization-scoped) and fine-tune each permission individually from the dashboard.

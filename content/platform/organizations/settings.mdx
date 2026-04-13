@@ -14,14 +14,14 @@ Customize the look and feel of your organization:
 
 ## AI Configuration
 
-Configure the AI assistant for your organization:
+Per-organization AI controls let admins:
 
-- Enable or disable AI features
-- Set your OpenAI API key
-- Adjust AI behavior and context settings
+- Enable or disable AI features for the organization
+- Set a per-user request limit to cap usage
+- Toggle individual AI surfaces (such as the admin copilot)
 
 <Callout>
-An OpenAI API key is required for AI features to function. Without one, the AI assistant will be unavailable to students and teachers.
+The Google Gemini API key itself is a global, instance-level setting (`LEARNHOUSE_GEMINI_API_KEY`) — it is configured once at deployment and shared across all organizations. See [AI Setup](/self-hosting/configuration/ai-setup) for details.
 </Callout>
 
 ## User and Access Settings
@@ -30,7 +30,6 @@ Control how users interact with your organization:
 
 - **Signup mechanism** — Choose between open signup and invite-only registration.
 - **User limits** — Set maximum user counts if needed.
-- **Default role** — Configure the default role assigned to new users.
 
 ## Managing Settings
 

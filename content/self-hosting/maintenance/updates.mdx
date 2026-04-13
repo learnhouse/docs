@@ -6,15 +6,23 @@ Keeping LearnHouse up to date ensures you have the latest features, bug fixes, a
 
 ## Updating LearnHouse
 
-There is no dedicated update command in the CLI. To update your instance, pull the latest Docker images and restart the services manually:
+Use the built-in `update` command. It pulls the target image, rewrites the image tag in `docker-compose.yml`, restarts the stack, and prompts for database migrations.
 
 ```bash
-docker compose pull
-learnhouse stop
-learnhouse start
+# Update to the latest version
+learnhouse update
+
+# Update to a specific version
+learnhouse update --version 1.4.2
 ```
 
-This pulls the latest LearnHouse Docker images (`ghcr.io/learnhouse/app:latest` and others), stops the running services, and starts them again with the new images.
+Flags:
+
+| Flag | Description |
+|---|---|
+| `--version <tag>` | Pull a specific image tag from `ghcr.io/learnhouse/app`. Defaults to `latest`. |
+| `--migrate` | Run database migrations without prompting. |
+| `--no-migrate` | Skip database migrations without prompting. |
 
 <Callout type="warning">
 Always create a backup before updating. This allows you to roll back if anything goes wrong.
@@ -26,17 +34,13 @@ Always create a backup before updating. This allows you to roll back if anything
 # 1. Create a backup
 learnhouse backup
 
-# 2. Pull the latest images
-docker compose pull
+# 2. Run the update
+learnhouse update
 
-# 3. Restart services with the new images
-learnhouse stop
-learnhouse start
-
-# 4. Verify all services are healthy
+# 3. Verify all services are healthy
 learnhouse doctor
 
-# 5. Check logs for any errors
+# 4. Check logs for any errors
 learnhouse logs
 ```
 
@@ -45,16 +49,16 @@ learnhouse logs
 Review the [LearnHouse release notes](https://github.com/learnhouse/learnhouse/releases) before updating to understand what has changed. Some updates may include:
 
 - New features or UI changes
-- Database migrations (applied automatically)
+- Database migrations (applied automatically when you accept the prompt or pass `--migrate`)
 - Configuration changes that may require updating your `.env` file
 - Breaking changes (rare, but documented in release notes)
 
 ## Rolling Back
 
-If an update causes issues, restore from your backup using the backup command:
+If an update causes issues, restore from your latest backup:
 
 ```bash
-learnhouse backup
+learnhouse restore <archive.tar.gz>
 ```
 
-The backup command handles both creating new backups and restoring from existing ones. Follow the prompts to select a restore operation, which will restore both the database and uploaded content to the state captured in the backup.
+Backups live under `<installDir>/backups/` and are named `learnhouse-backup-<timestamp>.tar.gz`. The restore command replays the database dump and optionally restores the `.env` file — uploaded files on the filesystem are **not** restored (they are not included in the backup).

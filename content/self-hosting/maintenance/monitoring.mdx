@@ -6,13 +6,13 @@ Monitoring your self-hosted LearnHouse instance helps you catch issues early and
 
 ## Service Health Checks
 
-Run the built-in diagnostics to check the health of your installation:
+The CLI offers three complementary commands:
 
 ```bash
-learnhouse doctor
+learnhouse status    # quick container status for each service
+learnhouse health    # PostgreSQL, Redis, HTTP health endpoint, disk, resources
+learnhouse doctor    # deep diagnostics (Docker, ports, DNS, env validation, logs)
 ```
-
-This checks Docker availability, container health, port conflicts, DNS resolution, and disk space. It reports any issues found and suggests fixes.
 
 You can also verify the application health endpoint directly:
 
