@@ -145,6 +145,12 @@ const iconMap = {
   '/platform/organizations/multi-tenancy': TreeStructure,
   '/platform/organizations/settings': SlidersHorizontal,
 
+  // Platform > Automations
+  '/platform/automations': Lightning,
+  '/platform/automations/webhooks': Plug,
+  '/platform/automations/zapier': ArrowsClockwise,
+  '/platform/automations/events': ListChecks,
+
   // Enterprise
   '/enterprise/sso': IdentificationBadge,
   '/enterprise/audit-logs': Scroll,

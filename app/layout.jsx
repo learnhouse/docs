@@ -67,18 +67,6 @@ export const metadata = {
   manifest: '/favicons/site.webmanifest',
 }
 
-const websiteJsonLd = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: 'LearnHouse Documentation',
-  url: 'https://docs.learnhouse.app',
-  publisher: {
-    '@type': 'Organization',
-    name: 'LearnHouse',
-    url: 'https://learnhouse.app',
-  },
-}
-
 export default async function RootLayout({ children }) {
   return (
     <html lang="en" dir="ltr" suppressHydrationWarning>
@@ -91,11 +79,6 @@ export default async function RootLayout({ children }) {
         <link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </Head>
       <body>
-        <script dangerouslySetInnerHTML={{ __html: `document.documentElement.classList.remove('dark');document.documentElement.classList.add('light');document.documentElement.style.colorScheme='light';localStorage.setItem('theme','light');` }} />
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
-        />
         <PostHogProvider>
           <CustomNavbar />
           <Layout
@@ -105,6 +88,7 @@ export default async function RootLayout({ children }) {
             editLink="Edit this page on GitHub"
             footer={<></>}
             navbar={<></>}
+            nextThemes={{ forcedTheme: 'light', defaultTheme: 'light' }}
           >
             {children}
           </Layout>
