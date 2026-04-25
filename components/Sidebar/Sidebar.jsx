@@ -190,6 +190,7 @@ const iconMap = {
   '/developers/architecture': TreeStructure,
   '/developers/contributing': GitBranch,
   '/developers/api': Plug,
+  '/developers/migration': ArrowsClockwise,
 
   // Developers > Architecture
   '/developers/architecture/frontend': Browser,
@@ -203,6 +204,11 @@ const iconMap = {
   // Developers > API
   '/developers/api/authentication': Key,
   '/developers/api/endpoints': Plug,
+
+  // Developers > Migration
+  '/developers/migration/programmatic': Code,
+  '/developers/migration/activity-types': Stack,
+  '/developers/migration/assisted': Brain,
 }
 
 function getIcon(route) {

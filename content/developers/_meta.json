@@ -2,5 +2,6 @@
   "index": "Overview",
   "architecture": "Architecture",
   "contributing": "Contributing",
-  "api": "API Reference"
+  "api": "API Reference",
+  "migration": "Migration"
 }

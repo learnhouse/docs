@@ -13,13 +13,22 @@ function Breadcrumb() {
 
   if (!activePath || activePath.length <= 1) return null
 
+  // Nextra emits both a folder entry and its index page with the same route
+  // (e.g. /developers/migration appears twice once you open /developers/migration).
+  // Collapse consecutive duplicates so React keys stay unique and the trail
+  // does not show the same crumb twice.
+  const trail = activePath.filter((item, i, arr) => {
+    const next = arr[i + 1]
+    return !next || next.route !== item.route
+  })
+
   return (
     <nav className="lh-breadcrumb" aria-label="breadcrumb">
-      {activePath.map((item, i) => {
-        const isLast = i === activePath.length - 1
+      {trail.map((item, i) => {
+        const isLast = i === trail.length - 1
         const title = typeof item.title === 'string' ? item.title : item.name
         return (
-          <span key={item.route || i} className="lh-breadcrumb-item">
+          <span key={`${item.route || ''}-${i}`} className="lh-breadcrumb-item">
             {i > 0 && <span className="lh-breadcrumb-sep">/</span>}
             {isLast ? (
               <span className="lh-breadcrumb-current">{title}</span>
@@ -66,12 +75,13 @@ function Pagination() {
   )
 }
 
-function EditOnGitHub() {
-  const pathname = usePathname()
+function EditOnGitHub({ filePath }) {
+  // `filePath` comes from Nextra page metadata and is the actual source path
+  // relative to the docs repo root (e.g. "content/cli/index.mdx"). Using it
+  // directly avoids guessing folder-index vs leaf-file from the URL.
+  if (!filePath) return null
 
-  let filePath = pathname === '/' ? '/index' : pathname
-  const gitHubBase = 'https://github.com/learnhouse/docs/edit/main/content'
-  const href = `${gitHubBase}${filePath}.mdx`
+  const href = `https://github.com/learnhouse/docs/edit/main/${filePath}`
 
   return (
     <a
@@ -165,7 +175,7 @@ export default function Wrapper({ children, toc, metadata }) {
         <article className="lh-article">
           <div className="lh-article-header">
             <Breadcrumb />
-            {!isHome && <EditOnGitHub />}
+            {!isHome && <EditOnGitHub filePath={metadata?.filePath} />}
           </div>
           <div className="lh-prose">
             {children}
