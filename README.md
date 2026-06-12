@@ -1,3 +1,9 @@
+> **⚠️ Notice:** This repository is archived. The docs have moved to [learnhouse/learnhouse](https://github.com/learnhouse/learnhouse/tree/main/docs). Please refer to that repository for the latest documentation.
+
+
+
+
+
 <p align="center">
   <a href="https://docs.learnhouse.app">
     <img alt="LearnHouse" src=".github/images/learnhouse-github.png" width="600" />
